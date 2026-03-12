@@ -5,6 +5,9 @@ import { Product } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import { productImageMap } from "@/lib/productImages";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { getEffectivePrice } from "@/config/promotion";
+import PriceDisplay from "./PriceDisplay";
+import PromotionBadge from "./PromotionBadge";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const [selectedSize, setSelectedSize] = useState(0);
@@ -22,7 +25,8 @@ const ProductCard = ({ product }: { product: Product }) => {
       name: product.name,
       image: product.image,
       size: currentSize.label,
-      price: currentSize.price,
+      // Always add to cart at the effective (possibly discounted) price
+      price: getEffectivePrice(currentSize.price),
     });
   };
 
@@ -61,6 +65,10 @@ const ProductCard = ({ product }: { product: Product }) => {
             }`}
             loading="lazy"
           />
+          {/* Promotion badge — top-left corner of image */}
+          <div className="absolute top-2.5 left-2.5">
+            <PromotionBadge />
+          </div>
         </div>
       </Link>
 
@@ -87,7 +95,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
 
         <div className="flex items-center justify-between pt-1">
-          <span className="text-sm font-medium text-foreground">{currentSize.price} TND</span>
+          <PriceDisplay basePrice={currentSize.price} variant="card" />
           <button
             onClick={handleAdd}
             className="p-2.5 bg-accent text-accent-foreground hover:bg-charcoal-light transition-all duration-150 active:scale-[0.95]"

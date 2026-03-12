@@ -7,9 +7,11 @@ import SocialProof from "@/components/SocialProof";
 import CTASection from "@/components/CTASection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PromotionBanner from "@/components/PromotionBanner";
 
 const Index = () => (
   <>
+    <PromotionBanner />
     <Header />
     <main>
       <HeroSection />

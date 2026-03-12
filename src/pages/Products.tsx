@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PromotionBanner from "@/components/PromotionBanner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -13,7 +14,9 @@ const Products = () => {
 
   return (
     <>
-      <Header />
+      
+    <PromotionBanner />
+    <Header />
       <main className="py-12 md:py-20">
         <div className="container">
           <div className="text-center mb-14">

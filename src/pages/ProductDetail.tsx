@@ -6,6 +6,10 @@ import Footer from "@/components/Footer";
 import ProductGallery from "@/components/ProductGallery";
 import { getProductBySlug } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
+import { getEffectivePrice } from "@/config/promotion";
+import PriceDisplay from "@/components/PriceDisplay";
+import PromotionBadge from "@/components/PromotionBadge";
+import PromotionBanner from "@/components/PromotionBanner";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -17,7 +21,9 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <>
-        <Header />
+        
+    <PromotionBanner />
+    <Header />
         <main className="py-24 text-center container">
           <h1 className="font-heading text-2xl font-normal text-foreground mb-4">Produit introuvable</h1>
           <Link to="/produits" className="text-muted-foreground underline text-sm">Retour à la collection</Link>
@@ -35,7 +41,7 @@ const ProductDetail = () => {
       name: product.name,
       image: product.image,
       size: currentSize.label,
-      price: currentSize.price,
+      price: getEffectivePrice(currentSize.price),
     });
   };
 
@@ -53,7 +59,10 @@ const ProductDetail = () => {
 
             <div className="flex flex-col justify-center">
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-3">{product.category}</p>
-              <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-5">{product.name}</h1>
+              <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-3">{product.name}</h1>
+              <div className="mb-5">
+                <PromotionBadge />
+              </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-8">{product.description}</p>
 
               <div className="mb-6">
@@ -76,7 +85,7 @@ const ProductDetail = () => {
               </div>
 
               <div className="mb-8">
-                <span className="text-2xl font-medium text-foreground">{currentSize.price} TND</span>
+                <PriceDisplay basePrice={currentSize.price} variant="detail" />
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 mb-10">
@@ -122,7 +131,7 @@ const ProductDetail = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 lg:hidden z-40">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-lg font-medium text-foreground">{currentSize.price} TND</p>
+            <PriceDisplay basePrice={currentSize.price} variant="detail" />
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{currentSize.label}</p>
           </div>
           <button
