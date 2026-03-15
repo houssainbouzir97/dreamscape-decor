@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
