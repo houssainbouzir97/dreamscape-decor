@@ -10,6 +10,7 @@ import { getEffectivePrice } from "@/config/promotion";
 import PriceDisplay from "@/components/PriceDisplay";
 import PromotionBadge from "@/components/PromotionBadge";
 import PromotionBanner from "@/components/PromotionBanner";
+import useSEO from "@/hooks/useSEO";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -18,12 +19,20 @@ const ProductDetail = () => {
   const { addItem } = useCart();
   const navigate = useNavigate();
 
+  // Dynamic SEO per product
+  useSEO({
+    title: product
+      ? `${product.name} – Décoration Murale Métal | Dreamscape Decor`
+      : "Produit – Dreamscape Decor",
+    description: product
+      ? `${product.description} Disponible en ${product.sizes.map(s => s.label).join(", ")}. Livraison partout en Tunisie, paiement à la livraison.`
+      : "Décoration murale en métal Alucobond. Livraison partout en Tunisie.",
+  });
+
   if (!product) {
     return (
       <>
-        
-    <PromotionBanner />
-    <Header />
+        <Header />
         <main className="py-24 text-center container">
           <h1 className="font-heading text-2xl font-normal text-foreground mb-4">Produit introuvable</h1>
           <Link to="/produits" className="text-muted-foreground underline text-sm">Retour à la collection</Link>
@@ -47,6 +56,7 @@ const ProductDetail = () => {
 
   return (
     <>
+      <PromotionBanner />
       <Header />
       <main className="py-10 md:py-20">
         <div className="container">
@@ -88,7 +98,7 @@ const ProductDetail = () => {
                 <PriceDisplay basePrice={currentSize.price} variant="detail" />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-10">
+              <div className="flex gap-3 mb-8">
                 <button
                   onClick={handleAdd}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-medium text-xs uppercase tracking-[0.15em] hover:bg-charcoal-light transition-colors"

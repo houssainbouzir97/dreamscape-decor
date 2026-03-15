@@ -4,9 +4,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { products, categories } from "@/data/products";
+import useSEO from "@/hooks/useSEO";
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState("Tous");
+
+  useSEO({
+    title: "Collection – Décoration Murale Métal | Dreamscape Decor",
+    description: "Explorez toute notre collection de décorations murales en métal Alucobond. Nature, géométrie, art islamique — livraison partout en Tunisie.",
+  });
 
   const filtered = activeCategory === "Tous"
     ? products
@@ -14,9 +20,8 @@ const Products = () => {
 
   return (
     <>
-      
-    <PromotionBanner />
-    <Header />
+      <PromotionBanner />
+      <Header />
       <main className="py-12 md:py-20">
         <div className="container">
           <div className="text-center mb-14">

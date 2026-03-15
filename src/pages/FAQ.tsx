@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import useSEO from "@/hooks/useSEO";
 import {
   Accordion,
   AccordionContent,
@@ -38,30 +39,37 @@ const faqs = [
   },
 ];
 
-const FAQ = () => (
-  <>
-    <Header />
-    <main className="py-16 md:py-24">
-      <div className="container max-w-2xl">
-        <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground mb-3">Support</p>
-        <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-10">Questions Fréquentes</h1>
+const FAQ = () => {
+  useSEO({
+    title: "FAQ – Questions Fréquentes | Dreamscape Decor",
+    description: "Toutes les réponses à vos questions : délais de livraison, installation, paiement à la livraison, retours, matériaux. Dreamscape Decor Tunisie.",
+  });
 
-        <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="border border-border px-5">
-              <AccordionTrigger className="font-heading text-left font-normal text-foreground hover:no-underline text-sm py-5">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
-                {faq.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </main>
-    <Footer />
-  </>
-);
+  return (
+    <>
+      <Header />
+      <main className="py-16 md:py-24">
+        <div className="container max-w-2xl">
+          <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground mb-3">Support</p>
+          <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-10">Questions Fréquentes</h1>
+
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`item-${i}`} className="border border-border px-5">
+                <AccordionTrigger className="font-heading text-left font-normal text-foreground hover:no-underline text-sm py-5">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+};
 
 export default FAQ;
