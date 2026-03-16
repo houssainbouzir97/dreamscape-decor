@@ -3,9 +3,12 @@ import { useEffect } from "react";
 interface SEOProps {
   title: string;
   description: string;
+  canonical?: string;
 }
 
-const useSEO = ({ title, description }: SEOProps) => {
+const BASE_URL = "https://dreamscape-decor-nu.vercel.app";
+
+const useSEO = ({ title, description, canonical }: SEOProps) => {
   useEffect(() => {
     // Set page title
     document.title = title;
@@ -36,7 +39,21 @@ const useSEO = ({ title, description }: SEOProps) => {
       document.head.appendChild(ogDescription);
     }
     ogDescription.setAttribute("content", description);
-  }, [title, description]);
+
+    // Set canonical tag
+    const canonicalUrl = canonical
+      ? `${BASE_URL}${canonical}`
+      : `${BASE_URL}${window.location.pathname}`;
+
+    let canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      canonicalTag = document.createElement("link");
+      canonicalTag.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalTag);
+    }
+    canonicalTag.setAttribute("href", canonicalUrl);
+
+  }, [title, description, canonical]);
 };
 
 export default useSEO;
