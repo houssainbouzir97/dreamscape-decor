@@ -4,6 +4,7 @@ import { ShoppingBag, Truck, Banknote, ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductGallery from "@/components/ProductGallery";
+import RelatedProducts from "@/components/RelatedProducts";
 import { getProductBySlug } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import { getEffectivePrice } from "@/config/promotion";
@@ -136,6 +137,13 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* Related Products Carousel */}
+        <RelatedProducts
+          currentProductId={product.id}
+          category={product.category}
+        />
+
       </main>
 
       {/* Mobile Sticky Add to Cart */}
