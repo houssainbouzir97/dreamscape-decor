@@ -7,6 +7,7 @@ import { useCart } from "@/hooks/useCart";
 import { productImageMap } from "@/lib/productImages";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import useSEO from "@/hooks/useSEO";
 
 const tunisianCities = [
   "Tunis", "Ariana", "Ben Arous", "Manouba", "Nabeul", "Zaghouan", "Bizerte",
@@ -15,12 +16,26 @@ const tunisianCities = [
   "Tataouine", "Gafsa", "Tozeur", "Kébili",
 ];
 
+const generateOrderNumber = () => {
+  const timestamp = Date.now().toString().slice(-6);
+  const random = Math.floor(Math.random() * 100).toString().padStart(2, "0");
+  return `DD-${timestamp}-${random}`;
+};
+
 const Checkout = () => {
   const { items, updateQuantity, removeItem, total, clearCart } = useCart();
   const { toast } = useToast();
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderNumber, setOrderNumber] = useState("");
+  const [orderSummary, setOrderSummary] = useState<typeof items>([]);
+  const [orderTotal, setOrderTotal] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", address: "", city: "Tunis" });
+
+  useSEO({
+    title: "Votre Commande – Dreamscape Decor",
+    description: "Finalisez votre commande de décoration murale. Paiement à la livraison, livraison partout en Tunisie.",
+  });
 
   const deliveryFee = 8;
   const grandTotal = total + deliveryFee;
@@ -36,11 +51,14 @@ const Checkout = () => {
     setIsSubmitting(true);
 
     try {
+      const newOrderNumber = generateOrderNumber();
+
       const payload = {
         name: form.name.trim(),
         phone: form.phone.trim(),
         address: form.address.trim(),
         city: form.city,
+        orderNumber: newOrderNumber,
         items: items.map((item) => ({
           productId: item.productId,
           name: item.name,
@@ -59,6 +77,9 @@ const Checkout = () => {
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
 
+      setOrderNumber(newOrderNumber);
+      setOrderSummary([...items]);
+      setOrderTotal(grandTotal);
       setOrderPlaced(true);
       clearCart();
       setForm({ name: "", phone: "", address: "", city: "Tunis" });
@@ -78,14 +99,65 @@ const Checkout = () => {
     return (
       <>
         <Header />
-        <main className="py-24 container text-center">
-          <div className="max-w-md mx-auto">
-            <p className="text-3xl mb-6">✅</p>
-            <h1 className="font-heading text-2xl font-normal text-foreground mb-4">Commande Envoyée</h1>
-            <p className="text-sm text-muted-foreground mb-10">Nous vous contactons rapidement pour confirmer la livraison.</p>
-            <Link to="/" className="inline-flex px-10 py-3.5 bg-accent text-accent-foreground font-medium text-xs uppercase tracking-[0.15em]">
-              Retour à l'accueil
-            </Link>
+        <main className="py-24 container">
+          <div className="max-w-lg mx-auto">
+
+            {/* Success header */}
+            <div className="text-center mb-10">
+              <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6">
+                <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <h1 className="font-heading text-2xl font-normal text-foreground mb-2">Commande Confirmée</h1>
+              <p className="text-sm text-muted-foreground">Nous vous contacterons rapidement pour confirmer la livraison.</p>
+            </div>
+
+            {/* Order number */}
+            <div className="bg-secondary/60 rounded-sm p-5 mb-6 text-center">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground mb-1">Numéro de commande</p>
+              <p className="font-heading text-xl text-foreground tracking-wider">{orderNumber}</p>
+            </div>
+
+            {/* Order summary */}
+            <div className="border border-border rounded-sm overflow-hidden mb-6">
+              <div className="px-5 py-4 border-b border-border">
+                <p className="text-xs font-medium uppercase tracking-wider text-foreground">Récapitulatif</p>
+              </div>
+              {orderSummary.map((item) => (
+                <div key={`${item.productId}-${item.size}`} className="flex items-center justify-between px-5 py-4 border-b border-border last:border-0">
+                  <div>
+                    <p className="text-sm text-foreground">{item.name}</p>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{item.size} × {item.quantity}</p>
+                  </div>
+                  <p className="text-sm font-medium text-foreground">{item.price * item.quantity} TND</p>
+                </div>
+              ))}
+              <div className="px-5 py-4 bg-secondary/40 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Livraison</span>
+                  <span className="text-foreground">8 TND</span>
+                </div>
+                <div className="flex justify-between text-sm font-medium">
+                  <span className="text-foreground">Total</span>
+                  <span className="text-foreground">{orderTotal} TND</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Delivery info */}
+            <div className="bg-secondary/40 rounded-sm p-5 mb-10 text-center">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                💵 Paiement à la livraison · 🚚 Livraison sous 3-5 jours ouvrables
+              </p>
+            </div>
+
+            <div className="text-center">
+              <Link to="/" className="inline-flex px-10 py-3.5 bg-accent text-accent-foreground font-medium text-xs uppercase tracking-[0.15em]">
+                Retour à l'accueil
+              </Link>
+            </div>
+
           </div>
         </main>
         <Footer />
@@ -115,7 +187,7 @@ const Checkout = () => {
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} /> Continuer vos achats
           </Link>
 
-          <h1 className="font-heading text-2xl md:text-3xl font-normal text-foreground mb-10">Checkout</h1>
+          <h1 className="font-heading text-2xl md:text-3xl font-normal text-foreground mb-10">Votre Commande</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
             {/* Cart Items */}

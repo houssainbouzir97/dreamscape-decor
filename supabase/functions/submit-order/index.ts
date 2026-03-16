@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { name, phone, address, city, items } = body;
+    const { name, phone, address, city, items, orderNumber } = body;
 
     // Validate required fields
     if (!name || !phone || !address) {
@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
       quantity: item.quantity || 1,
       delivery_fee: item.deliveryFee || null,
       total: item.total || null,
-      notes: item.notes || null,
+      notes: orderNumber ? `Commande #${orderNumber}` : null,
       source: "website",
     }));
 
@@ -81,19 +81,27 @@ Deno.serve(async (req) => {
       const deliveryFee = items[0]?.deliveryFee || 8;
 
       const emailHtml = `
-        <h2>Nouvelle commande – Dreamscape Decor</h2>
+        <h2 style="color:#1E1E1E;">🛍️ Nouvelle commande – Dreamscape Decor</h2>
+
+        ${orderNumber ? `<p style="background:#f5f0e8;padding:10px 16px;border-left:3px solid #C6A75E;font-size:16px;"><strong>Numéro de commande:</strong> ${orderNumber}</p>` : ""}
+
         <p><strong>Client:</strong> ${name}</p>
-        <p><strong>Téléphone:</strong> ${phone}</p>
+        <p><strong>Téléphone:</strong> <a href="tel:${phone}">${phone}</a></p>
         <p><strong>Adresse:</strong> ${address}</p>
         <p><strong>Ville:</strong> ${city || "Non spécifiée"}</p>
         <hr/>
-        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;">
-          <thead><tr><th>Produit</th><th>Taille</th><th>Qté</th><th>Prix</th></tr></thead>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%;">
+          <thead style="background:#1E1E1E;color:#F4EFEA;">
+            <tr><th>Produit</th><th>Taille</th><th>Qté</th><th>Prix</th></tr>
+          </thead>
           <tbody>${itemsHtml}</tbody>
         </table>
+        <br/>
         <p><strong>Sous-total:</strong> ${totalAmount} TND</p>
         <p><strong>Livraison:</strong> ${deliveryFee} TND</p>
-        <p><strong>Total:</strong> ${totalAmount + deliveryFee} TND</p>
+        <p style="font-size:16px;"><strong>Total:</strong> ${totalAmount + deliveryFee} TND</p>
+        <hr/>
+        <p style="color:#888;font-size:12px;">Dreamscape Decor – Paiement à la livraison</p>
       `;
 
       try {
@@ -106,7 +114,9 @@ Deno.serve(async (req) => {
           body: JSON.stringify({
             from: "Dreamscape Decor <onboarding@resend.dev>",
             to: [notificationEmail],
-            subject: "Nouvelle commande – Dreamscape Decor",
+            subject: orderNumber
+              ? `Commande ${orderNumber} – Dreamscape Decor`
+              : "Nouvelle commande – Dreamscape Decor",
             html: emailHtml,
           }),
         });
