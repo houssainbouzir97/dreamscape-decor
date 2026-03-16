@@ -10,6 +10,7 @@ import { getEffectivePrice } from "@/config/promotion";
 import PriceDisplay from "@/components/PriceDisplay";
 import PromotionBadge from "@/components/PromotionBadge";
 import PromotionBanner from "@/components/PromotionBanner";
+import ProductJsonLd from "@/components/ProductJsonLd";
 import useSEO from "@/hooks/useSEO";
 
 const ProductDetail = () => {
@@ -19,7 +20,6 @@ const ProductDetail = () => {
   const { addItem } = useCart();
   const navigate = useNavigate();
 
-  // Dynamic SEO per product
   useSEO({
     title: product
       ? `${product.name} – Décoration Murale Métal | Dreamscape Decor`
@@ -56,6 +56,7 @@ const ProductDetail = () => {
 
   return (
     <>
+      <ProductJsonLd product={product} />
       <PromotionBanner />
       <Header />
       <main className="py-10 md:py-20">
