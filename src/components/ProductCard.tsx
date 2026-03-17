@@ -25,7 +25,6 @@ const ProductCard = ({ product }: { product: Product }) => {
       name: product.name,
       image: product.image,
       size: currentSize.label,
-      // Always add to cart at the effective (possibly discounted) price
       price: getEffectivePrice(currentSize.price),
     });
   };
@@ -44,48 +43,45 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   return (
     <div
-      className={`group border transition-all duration-300 p-3 -m-3 rounded-sm active:scale-[0.98] active:transition-transform active:duration-150 ${
-        isActive
-          ? "border-gold/40 shadow-elevated"
-          : "border-transparent hover:border-gold/40 hover:shadow-elevated"
-      }`}
+      className="group"
       onBlur={handleBlur}
       tabIndex={0}
     >
-      <Link
-        to={`/produit/${product.slug}`}
-        onClick={handleCardClick}
-      >
-        <div className="relative aspect-[4/5] overflow-hidden bg-secondary/50 mb-5 flex items-center justify-center rounded-sm">
+      {/* Image */}
+      <Link to={`/produit/${product.slug}`} onClick={handleCardClick}>
+        <div className="relative overflow-hidden bg-secondary/50 mb-3 rounded-sm" style={{ aspectRatio: "4/5" }}>
           <img
             src={productImageMap[product.image]}
             alt={product.name}
-            className={`w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
+            className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
               isActive ? "scale-[1.03]" : ""
             }`}
             loading="lazy"
           />
-          {/* Promotion badge — top-left corner of image */}
+          {/* Promotion badge */}
           <div className="absolute top-2.5 left-2.5">
             <PromotionBadge />
           </div>
         </div>
       </Link>
 
-      <div className="space-y-2.5">
+      {/* Card info */}
+      <div>
+        {/* Category + Name */}
         <Link to={`/produit/${product.slug}`} onClick={handleCardClick}>
-          <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em]">{product.category}</p>
-          <h3 className="font-heading text-base md:text-lg font-normal text-foreground mt-1.5">{product.name}</h3>
+          <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] mb-1">{product.category}</p>
+          <h3 className="font-heading text-sm md:text-base font-normal text-foreground mb-2.5 leading-snug">{product.name}</h3>
         </Link>
 
-        <div className="flex gap-1.5">
+        {/* Size buttons — compact, no wrapping */}
+        <div className="flex flex-wrap gap-1 mb-3">
           {product.sizes.map((size, i) => (
             <button
               key={size.dimensions}
               onClick={() => setSelectedSize(i)}
-              className={`text-[11px] px-2.5 py-1.5 border transition-all duration-150 active:scale-[0.97] ${
+              className={`text-[10px] px-2 py-1 border transition-all duration-150 active:scale-[0.97] whitespace-nowrap ${
                 i === selectedSize
-                  ? "bg-accent text-accent-foreground border-gold"
+                  ? "bg-accent text-accent-foreground border-accent"
                   : "border-border text-muted-foreground hover:border-foreground"
               }`}
             >
@@ -94,14 +90,18 @@ const ProductCard = ({ product }: { product: Product }) => {
           ))}
         </div>
 
-        <div className="flex items-center justify-between pt-1">
-          <PriceDisplay basePrice={currentSize.price} variant="card" />
+        {/* Price + Add to cart */}
+        <div className="flex items-center gap-2">
+          <div className="flex-1">
+            <PriceDisplay basePrice={currentSize.price} variant="card" />
+          </div>
           <button
             onClick={handleAdd}
-            className="p-2.5 bg-accent text-accent-foreground hover:bg-charcoal-light transition-all duration-150 active:scale-[0.95]"
+            className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-accent text-accent-foreground hover:bg-charcoal-light transition-all duration-150 active:scale-[0.95] text-[10px] font-medium uppercase tracking-[0.1em] whitespace-nowrap"
             aria-label="Ajouter au panier"
           >
-            <ShoppingBag className="w-4 h-4" strokeWidth={1.5} />
+            <ShoppingBag className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.5} />
+            <span className="hidden sm:inline">Ajouter</span>
           </button>
         </div>
       </div>

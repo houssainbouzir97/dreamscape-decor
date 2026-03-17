@@ -2,7 +2,6 @@ import { PROMOTION, getDiscountedPrice } from "@/config/promotion";
 
 interface PriceDisplayProps {
   basePrice: number;
-  /** "card" = compact for product grid, "detail" = larger for product detail page */
   variant?: "card" | "detail";
 }
 
@@ -13,7 +12,7 @@ const PriceDisplay = ({ basePrice, variant = "card" }: PriceDisplayProps) => {
         className={
           variant === "detail"
             ? "text-2xl font-medium text-foreground"
-            : "text-sm font-medium text-foreground"
+            : "text-base font-medium text-foreground"
         }
       >
         {basePrice} TND
@@ -26,7 +25,7 @@ const PriceDisplay = ({ basePrice, variant = "card" }: PriceDisplayProps) => {
   if (variant === "detail") {
     return (
       <div className="flex items-baseline gap-3">
-        <span className="text-2xl font-medium text-[#1E1E1E]">
+        <span className="text-2xl font-semibold text-[#1E1E1E]">
           {discountedPrice} TND
         </span>
         <span className="text-base text-muted-foreground line-through">
@@ -36,10 +35,10 @@ const PriceDisplay = ({ basePrice, variant = "card" }: PriceDisplayProps) => {
     );
   }
 
-  // card variant
+  // card variant — new price bold and prominent, old price clearly visible but secondary
   return (
     <div className="flex items-baseline gap-2">
-      <span className="text-sm font-medium text-[#1E1E1E]">
+      <span className="text-base font-semibold text-[#1E1E1E]">
         {discountedPrice} TND
       </span>
       <span className="text-xs text-muted-foreground line-through">
