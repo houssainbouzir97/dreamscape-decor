@@ -9,9 +9,9 @@ const BrandStory = () => (
       </h2>
       <div className="w-16 h-0.5 bg-gold mx-auto mt-5 mb-8" />
       <p className="text-base md:text-lg text-muted-foreground leading-[1.8] max-w-2xl mx-auto">
-        Chez Dreamscape Decor, nous croyons que chaque mur mérite une touche d'élégance.
-        Nos décorations murales en métal sont conçues pour transformer les espaces modernes
-        avec simplicité et raffinement.
+        Nous croyons que la décoration murale ne devrait pas être un luxe réservé à quelques-uns.
+        Nos créations en métal Alucobond allient design moderne et artisanat tunisien —
+        pour transformer n'importe quel espace en quelque chose d'extraordinaire.
       </p>
       <div className="mt-10 w-12 h-px bg-border mx-auto" />
     </div>
