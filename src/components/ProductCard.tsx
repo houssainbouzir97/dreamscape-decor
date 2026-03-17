@@ -47,17 +47,55 @@ const ProductCard = ({ product }: { product: Product }) => {
       onBlur={handleBlur}
       tabIndex={0}
     >
-      {/* Image */}
+      {/* Image with cream overlay animation */}
       <Link to={`/produit/${product.slug}`} onClick={handleCardClick}>
-        <div className="relative overflow-hidden bg-secondary/50 mb-3 rounded-sm" style={{ aspectRatio: "4/5" }}>
+        <div
+          className="relative overflow-hidden bg-secondary/50 mb-3 rounded-sm"
+          style={{ aspectRatio: "4/5" }}
+        >
+          {/* Product image */}
           <img
             src={productImageMap[product.image]}
             alt={product.name}
-            className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
-              isActive ? "scale-[1.03]" : ""
-            }`}
+            className={`w-full h-full object-cover transition-all duration-700 ease-out
+              group-hover:scale-[1.04] group-hover:brightness-[0.90]
+              ${isActive ? "scale-[1.04] brightness-[0.90]" : ""}
+            `}
             loading="lazy"
           />
+
+          {/* Cream overlay */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-500
+              ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
+            `}
+            style={{ background: "rgba(244, 239, 234, 0.45)" }}
+          />
+
+          {/* Bottom content */}
+          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-end pb-5 px-4">
+            {/* Gold line */}
+            <div
+              className={`h-px bg-gold transition-all duration-500 ease-out mb-2.5
+                ${isActive ? "w-12" : "w-0 group-hover:w-12"}
+              `}
+              style={{ transitionDelay: isActive ? "0ms" : "150ms" }}
+            />
+            {/* Text */}
+            <p
+              className={`text-[10px] font-medium uppercase tracking-[0.2em] text-[#1E1E1E]
+                transition-all duration-400 ease-out
+                ${isActive
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+                }
+              `}
+              style={{ transitionDelay: isActive ? "0ms" : "200ms" }}
+            >
+              Voir le produit
+            </p>
+          </div>
+
           {/* Promotion badge */}
           <div className="absolute top-2.5 left-2.5">
             <PromotionBadge />
@@ -67,13 +105,15 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       {/* Card info */}
       <div>
-        {/* Category + Name */}
         <Link to={`/produit/${product.slug}`} onClick={handleCardClick}>
-          <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] mb-1">{product.category}</p>
-          <h3 className="font-heading text-sm md:text-base font-normal text-foreground mb-2.5 leading-snug">{product.name}</h3>
+          <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] mb-1">
+            {product.category}
+          </p>
+          <h3 className="font-heading text-sm md:text-base font-normal text-foreground mb-2.5 leading-snug">
+            {product.name}
+          </h3>
         </Link>
 
-        {/* Size buttons — compact, no wrapping */}
         <div className="flex flex-wrap gap-1 mb-3">
           {product.sizes.map((size, i) => (
             <button
@@ -90,7 +130,6 @@ const ProductCard = ({ product }: { product: Product }) => {
           ))}
         </div>
 
-        {/* Price + Add to cart */}
         <div className="flex items-center gap-2">
           <div className="flex-1">
             <PriceDisplay basePrice={currentSize.price} variant="card" />
