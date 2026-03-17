@@ -1,6 +1,8 @@
 import HeroSection from "@/components/HeroSection";
 import TrustBadges from "@/components/TrustBadges";
 import BestSellers from "@/components/BestSellers";
+import ProductShowcase from "@/components/ProductShowcase";
+import CustomerPhotoStrip from "@/components/CustomerPhotoStrip";
 import BrandStory from "@/components/BrandStory";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import SocialProof from "@/components/SocialProof";
@@ -24,7 +26,9 @@ const Index = () => {
         <HeroSection />
         <TrustBadges />
         <BestSellers />
+        <ProductShowcase />
         <BrandStory />
+        <CustomerPhotoStrip />
         <WhyChooseUs />
         <SocialProof />
         <CTASection />

@@ -168,3 +168,33 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-hero-zoom {
+  animation: heroZoom 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.animate-fade-up-delay {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+}
