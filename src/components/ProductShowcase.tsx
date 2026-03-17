@@ -32,7 +32,7 @@ const ProductShowcase = () => {
 
     const animate = () => {
       if (!isPausedRef.current && !isDraggingRef.current) {
-        positionRef.current += 0.8;
+        positionRef.current += 1.2;
         if (positionRef.current >= loopWidth * 2) positionRef.current = loopWidth;
         if (positionRef.current < loopWidth) positionRef.current = loopWidth * 2 - ITEM_WIDTH;
         track.style.transform = `translateX(-${positionRef.current}px)`;
