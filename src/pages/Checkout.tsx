@@ -9,6 +9,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import useSEO from "@/hooks/useSEO";
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 const tunisianCities = [
   "Tunis", "Ariana", "Ben Arous", "Manouba", "Nabeul", "Zaghouan", "Bizerte",
   "Béja", "Jendouba", "Le Kef", "Siliana", "Sousse", "Monastir", "Mahdia",
@@ -83,6 +89,21 @@ const Checkout = () => {
       setOrderPlaced(true);
       clearCart();
       setForm({ name: "", phone: "", address: "", city: "Tunis" });
+
+      // Track purchase in Google Analytics
+      if (typeof window.gtag !== "undefined") {
+        window.gtag("event", "purchase", {
+          transaction_id: newOrderNumber,
+          value: grandTotal,
+          currency: "TND",
+          items: items.map((item) => ({
+            item_id: item.productId,
+            item_name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+          })),
+        });
+      }
     } catch (err: any) {
       console.error("Order submission error:", err);
       toast({
