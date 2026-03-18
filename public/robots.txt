@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dreamscape-decor-nu.vercel.app/sitemap.xml
+Sitemap: https://dreamscapedecor.art/sitemap.xml

@@ -6,14 +6,12 @@ interface SEOProps {
   canonical?: string;
 }
 
-const BASE_URL = "https://dreamscape-decor-nu.vercel.app";
+const BASE_URL = "https://dreamscapedecor.art";
 
 const useSEO = ({ title, description, canonical }: SEOProps) => {
   useEffect(() => {
-    // Set page title
     document.title = title;
 
-    // Set meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement("meta");
@@ -22,7 +20,6 @@ const useSEO = ({ title, description, canonical }: SEOProps) => {
     }
     metaDescription.setAttribute("content", description);
 
-    // Set OG title
     let ogTitle = document.querySelector('meta[property="og:title"]');
     if (!ogTitle) {
       ogTitle = document.createElement("meta");
@@ -31,7 +28,6 @@ const useSEO = ({ title, description, canonical }: SEOProps) => {
     }
     ogTitle.setAttribute("content", title);
 
-    // Set OG description
     let ogDescription = document.querySelector('meta[property="og:description"]');
     if (!ogDescription) {
       ogDescription = document.createElement("meta");
@@ -40,7 +36,6 @@ const useSEO = ({ title, description, canonical }: SEOProps) => {
     }
     ogDescription.setAttribute("content", description);
 
-    // Set canonical tag
     const canonicalUrl = canonical
       ? `${BASE_URL}${canonical}`
       : `${BASE_URL}${window.location.pathname}`;
