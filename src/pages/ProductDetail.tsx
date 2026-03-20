@@ -91,11 +91,12 @@ const ProductDetail = () => {
 
   useSEO({
     title: product
-      ? `${product.name} – Décoration Murale Métal | Dreamscape Decor`
+      ? `${product.name} – Tableau Métal ${product.category} | Dreamscape Decor Tunisie`
       : "Produit – Dreamscape Decor",
     description: product
-      ? `${product.description} Disponible en ${product.sizes.map(s => s.label).join(", ")}. Livraison partout en Tunisie, paiement à la livraison.`
+      ? `${product.description} En métal Alucobond résistant UV — idéal salon, chambre, bureau et extérieur. Disponible en ${product.sizes.map(s => s.label).join(", ")}. Livraison COD Tunisie.`
       : "Décoration murale en métal Alucobond. Livraison partout en Tunisie.",
+    canonical: product ? `/produit/${product.slug}` : undefined,
   });
 
   if (!product) {
@@ -116,6 +117,17 @@ const ProductDetail = () => {
   const reviews = getReviews(product.id);
   const avgRating = (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1);
 
+  // Breadcrumb schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://dreamscapedecor.art/" },
+      { "@type": "ListItem", "position": 2, "name": "Collection", "item": "https://dreamscapedecor.art/produits" },
+      { "@type": "ListItem", "position": 3, "name": product.name, "item": `https://dreamscapedecor.art/produit/${product.slug}` },
+    ],
+  };
+
   const handleAdd = () => {
     addItem({
       productId: product.id,
@@ -129,13 +141,22 @@ const ProductDetail = () => {
   return (
     <>
       <ProductJsonLd product={product} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PromotionBanner />
       <Header />
       <main className="py-10 md:py-20">
         <div className="container">
-          <Link to="/produits" className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground mb-8 transition-colors uppercase tracking-wider">
-            <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} /> Retour à la collection
-          </Link>
+          {/* Breadcrumb navigation */}
+          <nav className="flex items-center gap-2 text-xs text-muted-foreground mb-8" aria-label="Breadcrumb">
+            <Link to="/" className="hover:text-foreground transition-colors">Accueil</Link>
+            <span>/</span>
+            <Link to="/produits" className="hover:text-foreground transition-colors">Collection</Link>
+            <span>/</span>
+            <span className="text-foreground">{product.name}</span>
+          </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
             <ProductGallery imageKey={product.image} productName={product.name} />
@@ -144,7 +165,7 @@ const ProductDetail = () => {
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-3">{product.category}</p>
               <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-3">{product.name}</h1>
 
-              {/* Rating summary */}
+              {/* Rating */}
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -157,8 +178,15 @@ const ProductDetail = () => {
               <div className="mb-5">
                 <PromotionBadge />
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-8">{product.description}</p>
 
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{product.description}</p>
+
+              {/* Exterior mention */}
+              <p className="text-xs text-muted-foreground leading-relaxed mb-8 border-l-2 border-gold pl-3">
+                Fabriqué en Alucobond résistant aux UV — convient pour le salon, la chambre, le bureau, le café et l'extérieur.
+              </p>
+
+              {/* Size selector */}
               <div className="mb-6">
                 <p className="text-xs font-medium text-foreground uppercase tracking-wider mb-3">Taille</p>
                 <div className="flex flex-wrap gap-2">
@@ -178,11 +206,12 @@ const ProductDetail = () => {
                 </div>
               </div>
 
+              {/* Price */}
               <div className="mb-5">
                 <PriceDisplay basePrice={currentSize.price} variant="detail" />
               </div>
 
-              {/* Scarcity indicator */}
+              {/* Scarcity */}
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-2 h-2 rounded-full bg-[#E07A35] animate-pulse flex-shrink-0" />
                 <p className="text-xs text-[#E07A35] font-medium">
@@ -190,6 +219,7 @@ const ProductDetail = () => {
                 </p>
               </div>
 
+              {/* Action buttons */}
               <div className="flex gap-3 mb-6">
                 <button
                   onClick={handleAdd}
@@ -205,6 +235,7 @@ const ProductDetail = () => {
                 </button>
               </div>
 
+              {/* Delivery & info */}
               <div className="border-t border-border pt-6 space-y-3">
                 <div className="flex items-start gap-3">
                   <Truck className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" strokeWidth={1.5} />
@@ -220,14 +251,14 @@ const ProductDetail = () => {
                 <div className="mt-4 p-5 bg-secondary">
                   <p className="text-xs font-medium text-foreground mb-1">Matériau: {product.material}</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Panneau composite aluminium ultra-résistant. Léger, durable, et résistant aux UV. Système de fixation inclus.
+                    Panneau composite aluminium ultra-résistant. Léger, durable, résistant aux UV et aux intempéries. Système de fixation inclus.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Reviews section */}
+          {/* Reviews */}
           <div className="mt-20 pt-16 border-t border-border">
             <div className="flex items-start justify-between mb-10">
               <div>
@@ -270,7 +301,7 @@ const ProductDetail = () => {
         />
       </main>
 
-      {/* Mobile Sticky Add to Cart */}
+      {/* Mobile Sticky */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 lg:hidden z-40">
         <div className="flex items-center justify-between gap-4">
           <div>
