@@ -1,70 +1,101 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "Quel est le délai de livraison ?",
-    a: "La livraison prend entre 3 à 5 jours ouvrables partout en Tunisie. Vous recevrez un appel de confirmation avant la livraison.",
+    q: "Vos tableaux peuvent-ils être utilisés en extérieur ?",
+    a: "Oui, absolument. Nos tableaux sont fabriqués en Alucobond — un panneau composite aluminium résistant aux UV et aux intempéries. Ils conviennent parfaitement pour une utilisation en extérieur : terrasse, jardin, façade de maison, café ou restaurant.",
+  },
+  {
+    q: "Quelles tailles sont disponibles ?",
+    a: "Chaque produit est disponible en plusieurs tailles. Les dimensions varient selon le design — de 40×40 cm pour les petits formats jusqu'à 145×85 cm pour les grands formats. Consultez chaque fiche produit pour voir les tailles disponibles.",
   },
   {
     q: "Comment installer la décoration murale ?",
-    a: "Chaque pièce est livrée avec un système de fixation inclus. L'installation prend moins de 5 minutes. Des instructions détaillées sont incluses dans le colis.",
+    a: "L'installation est très simple et prend environ 5 minutes. Un système de fixation est inclus avec chaque commande. Vous n'avez pas besoin d'outils spéciaux. Chaque pièce est livrée avec ses instructions de montage.",
   },
   {
-    q: "Quel est le mode de paiement ?",
-    a: "Nous proposons le paiement à la livraison (COD). Vous payez en espèces au livreur lors de la réception de votre commande.",
+    q: "Quel est le délai de livraison ?",
+    a: "Nous livrons dans toute la Tunisie sous 3 à 5 jours ouvrables. La livraison est disponible dans les 24 gouvernorats. Le paiement se fait à la livraison (COD) — vous payez uniquement quand vous recevez votre commande.",
   },
   {
-    q: "Qu'est-ce que l'Alucobond ?",
-    a: "L'Alucobond est un panneau composite en aluminium haut de gamme. Il est ultra-léger, résistant aux UV et aux intempéries, et offre une finition premium durable.",
+    q: "Est-ce que je peux retourner un produit ?",
+    a: "Oui. Vous disposez de 7 jours après réception pour retourner un produit si vous n'êtes pas satisfait. Consultez notre politique de retour pour plus de détails.",
   },
   {
-    q: "Puis-je retourner un produit ?",
-    a: "Oui, vous disposez de 7 jours après réception pour retourner un produit en parfait état. Contactez-nous via WhatsApp pour organiser le retour.",
+    q: "Quel matériau utilisez-vous ?",
+    a: "Tous nos tableaux sont fabriqués en Alucobond — un panneau composite en aluminium ultra-résistant, léger et durable. Ce matériau est résistant aux UV, à l'humidité et aux chocs. Il ne rouille pas et conserve son aspect premium sur le long terme.",
   },
   {
-    q: "Livrez-vous dans toute la Tunisie ?",
-    a: "Oui, nous livrons dans les 24 gouvernorats de la Tunisie. Les frais de livraison sont de 8 TND.",
-  },
-  {
-    q: "Proposez-vous des designs personnalisés ?",
-    a: "Oui ! Contactez-nous via WhatsApp avec votre idée de design et nous vous enverrons une maquette gratuite avant production.",
+    q: "Proposez-vous des designs pour les cafés et restaurants ?",
+    a: "Oui. Nos tableaux en métal Alucobond sont parfaits pour la décoration de cafés, restaurants et espaces commerciaux. Ils sont durables, faciles à nettoyer et disponibles en grands formats. Contactez-nous sur WhatsApp pour une commande professionnelle.",
   },
 ];
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   useSEO({
-    title: "FAQ – Questions Fréquentes | Dreamscape Decor",
-    description: "Toutes les réponses à vos questions : délais de livraison, installation, paiement à la livraison, retours, matériaux. Dreamscape Decor Tunisie.",
+    title: "FAQ Décoration Murale Métal – Livraison, Tailles & Extérieur",
+    description: "Toutes vos questions sur nos tableaux métal Alucobond : installation, tailles, livraison Tunisie, usage extérieur. Réponses claires et rapides.",
+    canonical: "/faq",
   });
+
+  // FAQPage schema
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a,
+      },
+    })),
+  };
 
   return (
     <>
       <Header />
-      <main className="py-16 md:py-24">
-        <div className="container max-w-2xl">
-          <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground mb-3">Support</p>
-          <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-10">Questions Fréquentes</h1>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <main className="py-20 md:py-32">
+        <div className="container max-w-3xl">
+          <div className="text-center mb-16">
+            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-muted-foreground mb-4">Aide</p>
+            <h1 className="font-heading text-3xl md:text-4xl font-normal text-foreground mb-4">
+              Questions Fréquentes
+            </h1>
+            <div className="w-16 h-0.5 bg-gold mx-auto" />
+          </div>
 
-          <Accordion type="single" collapsible className="space-y-3">
+          <div className="space-y-2">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="border border-border px-5">
-                <AccordionTrigger className="font-heading text-left font-normal text-foreground hover:no-underline text-sm py-5">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
+              <div key={i} className="border border-border rounded-sm overflow-hidden">
+                <button
+                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-secondary/30 transition-colors"
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                >
+                  <span className="text-sm font-medium text-foreground">{faq.q}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                    strokeWidth={1.5}
+                  />
+                </button>
+                {openIndex === i && (
+                  <div className="px-6 pb-5">
+                    <p className="text-sm text-muted-foreground leading-[1.8]">{faq.a}</p>
+                  </div>
+                )}
+              </div>
             ))}
-          </Accordion>
+          </div>
         </div>
       </main>
       <Footer />

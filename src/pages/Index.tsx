@@ -14,8 +14,9 @@ import useSEO from "@/hooks/useSEO";
 
 const Index = () => {
   useSEO({
-    title: "Dreamscape Decor – Décoration Murale en Métal | Tunisie",
-    description: "Découvrez notre collection de décorations murales en métal Alucobond. Designs uniques, qualité premium, livraison partout en Tunisie. Paiement à la livraison.",
+    title: "Décoration Murale Métal Tunisie | Dreamscape Decor",
+    description: "Tableaux en métal Alucobond pour salon, chambre, bureau, café et extérieur. Designs modernes et uniques. Livraison COD dans toute la Tunisie.",
+    canonical: "/",
   });
 
   return (
