@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import logo from "@/assets/logo.webp";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,16 +12,28 @@ const Header = () => {
   const links = [
     { to: "/", label: "Accueil" },
     { to: "/produits", label: "Collection" },
+    { to: "/blog", label: "Blog" },
     { to: "/a-propos", label: "À Propos" },
     { to: "/contact", label: "Contact" },
     { to: "/faq", label: "FAQ" },
   ];
 
+  const isActive = (to: string) => {
+    if (to === "/") return location.pathname === "/";
+    return location.pathname === to || location.pathname.startsWith(to + "/");
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-18 md:h-24">
         <Link to="/" className="flex items-center py-2">
-          <img src={logo} alt="Dreamscape Decor" className="h-14 sm:h-18 md:h-22 w-auto object-contain" />
+          <img
+            src={logo}
+            alt="Dreamscape Decor — Décoration murale métal Tunisie"
+            className="h-14 sm:h-18 md:h-22 w-auto object-contain"
+            width={120}
+            height={88}
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -31,7 +43,7 @@ const Header = () => {
               key={link.to}
               to={link.to}
               className={`text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 hover:text-gold active:scale-[0.97] active:transition-transform active:duration-150 ${
-                location.pathname === link.to ? "text-foreground" : "text-muted-foreground"
+                isActive(link.to) ? "text-foreground" : "text-muted-foreground"
               }`}
             >
               {link.label}
@@ -68,7 +80,7 @@ const Header = () => {
               to={link.to}
               onClick={() => setIsOpen(false)}
               className={`block px-6 py-4 text-xs font-medium uppercase tracking-[0.15em] border-b border-border transition-colors ${
-                location.pathname === link.to ? "text-foreground" : "text-muted-foreground"
+                isActive(link.to) ? "text-foreground" : "text-muted-foreground"
               }`}
             >
               {link.label}
