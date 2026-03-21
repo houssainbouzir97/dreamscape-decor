@@ -62,7 +62,6 @@ const BlogArticle = () => {
     ],
   };
 
-  // Parse [[text|/url]] into React Link elements
   const parseInlineLinks = (text: string): React.ReactNode[] => {
     const parts = text.split(/\[\[([^\]]+)\|([^\]]+)\]\]/g);
     const result: React.ReactNode[] = [];
@@ -83,7 +82,6 @@ const BlogArticle = () => {
     return result;
   };
 
-  // Parse {{imageKey|alt}} syntax for inline images
   const parseImageTag = (line: string) => {
     const match = line.match(/^\{\{([^|]+)\|([^}]+)\}\}$/);
     if (!match) return null;
@@ -107,21 +105,18 @@ const BlogArticle = () => {
     };
 
     lines.forEach((line, i) => {
-      // Check for image tag
       const imgTag = parseImageTag(line.trim());
       if (imgTag) {
         flushList();
         const src = productImageMap[imgTag.imageKey];
         if (src) {
           elements.push(
-            <div key={i} className="my-6 overflow-hidden rounded-sm" style={{ aspectRatio: "16/9" }}>
+            <div key={i} className="my-8 rounded-sm overflow-hidden bg-secondary/20">
               <img
                 src={src}
                 alt={imgTag.alt}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain"
                 loading="lazy"
-                width={800}
-                height={450}
               />
             </div>
           );
@@ -189,6 +184,7 @@ const BlogArticle = () => {
     return elements;
   };
 
+  const coverSrc = productImageMap[article.coverImage];
   const related = articles.filter(a => a.slug !== article.slug).slice(0, 2);
 
   return (
@@ -224,17 +220,17 @@ const BlogArticle = () => {
             </div>
           </div>
 
-          {/* Cover image */}
-          <div className="overflow-hidden rounded-sm mb-10" style={{ aspectRatio: "16/9" }}>
-            <img
-              src={productImageMap[article.coverImage] || "/og-image.jpg"}
-              alt={article.title}
-              className="w-full h-full object-cover"
-              width={900}
-              height={506}
-              loading="eager"
-            />
-          </div>
+          {/* Cover image — no crop, full product visible */}
+          {coverSrc && (
+            <div className="mb-10 rounded-sm overflow-hidden bg-secondary/20">
+              <img
+                src={coverSrc}
+                alt={article.title}
+                className="w-full h-auto object-contain"
+                loading="eager"
+              />
+            </div>
+          )}
 
           {/* Content */}
           <article className="mb-16">
