@@ -55,7 +55,6 @@ const BlogArticle = () => {
     },
   };
 
-  // Breadcrumb schema
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -66,37 +65,112 @@ const BlogArticle = () => {
     ],
   };
 
-  // Convert markdown-like content to HTML paragraphs
-  const renderContent = (content: string) => {
-    const lines = content.split("\n");
-    return lines.map((line, i) => {
-      if (line.startsWith("## ")) {
-        return <h2 key={i} className="font-heading text-xl md:text-2xl font-normal text-foreground mt-10 mb-4">{line.replace("## ", "")}</h2>;
-      }
-      if (line.startsWith("### ")) {
-        return <h3 key={i} className="font-heading text-lg font-normal text-foreground mt-8 mb-3">{line.replace("### ", "")}</h3>;
-      }
-      if (line.startsWith("- ")) {
-        return <li key={i} className="text-sm text-muted-foreground leading-relaxed ml-4 mb-1">{line.replace("- ", "")}</li>;
-      }
-      if (line.startsWith("**") && line.endsWith("**")) {
-        return <p key={i} className="text-sm font-semibold text-foreground mt-4 mb-2">{line.replace(/\*\*/g, "")}</p>;
-      }
-      if (line.trim() === "") return <div key={i} className="h-2" />;
-      // Handle inline bold
-      const parts = line.split(/\*\*(.*?)\*\*/g);
-      if (parts.length > 1) {
-        return (
-          <p key={i} className="text-sm text-muted-foreground leading-[1.9] mb-2">
-            {parts.map((part, j) => j % 2 === 1 ? <strong key={j} className="text-foreground font-medium">{part}</strong> : part)}
-          </p>
+  // Parse [[text|/url]] into React elements with proper Link components
+  const parseInlineLinks = (text: string): React.ReactNode[] => {
+    const parts = text.split(/\[\[([^\]]+)\|([^\]]+)\]\]/g);
+    const result: React.ReactNode[] = [];
+    for (let i = 0; i < parts.length; i++) {
+      if (i % 3 === 0) {
+        if (parts[i]) result.push(parts[i]);
+      } else if (i % 3 === 1) {
+        const linkText = parts[i];
+        const linkUrl = parts[i + 1];
+        result.push(
+          <Link
+            key={i}
+            to={linkUrl}
+            className="text-gold underline underline-offset-2 hover:opacity-80 transition-opacity"
+          >
+            {linkText}
+          </Link>
         );
+        i++; // skip url part
       }
-      return <p key={i} className="text-sm text-muted-foreground leading-[1.9] mb-2">{line}</p>;
-    });
+    }
+    return result;
   };
 
-  // Other articles for "related" section
+  // Render content with headings, lists, bold and internal links
+  const renderContent = (content: string) => {
+    const lines = content.split("\n");
+    const elements: React.ReactNode[] = [];
+    let listItems: React.ReactNode[] = [];
+
+    const flushList = () => {
+      if (listItems.length > 0) {
+        elements.push(
+          <ul key={`list-${elements.length}`} className="space-y-1.5 ml-4 mb-4">
+            {listItems}
+          </ul>
+        );
+        listItems = [];
+      }
+    };
+
+    lines.forEach((line, i) => {
+      if (line.startsWith("## ")) {
+        flushList();
+        elements.push(
+          <h2 key={i} className="font-heading text-xl md:text-2xl font-normal text-foreground mt-10 mb-4">
+            {line.replace("## ", "")}
+          </h2>
+        );
+      } else if (line.startsWith("### ")) {
+        flushList();
+        elements.push(
+          <h3 key={i} className="font-heading text-lg font-normal text-foreground mt-8 mb-3">
+            {line.replace("### ", "")}
+          </h3>
+        );
+      } else if (line.startsWith("- ")) {
+        const itemContent = line.replace("- ", "");
+        // Handle bold in list items
+        const boldParts = itemContent.split(/\*\*(.*?)\*\*/g);
+        const rendered = boldParts.map((part, j) =>
+          j % 2 === 1
+            ? <strong key={j} className="text-foreground font-medium">{part}</strong>
+            : parseInlineLinks(part)
+        );
+        listItems.push(
+          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
+            <span className="text-gold mt-1.5 flex-shrink-0">—</span>
+            <span>{rendered}</span>
+          </li>
+        );
+      } else if (line.trim() === "") {
+        flushList();
+        elements.push(<div key={i} className="h-1" />);
+      } else {
+        flushList();
+        // Handle bold + inline links
+        const boldParts = line.split(/\*\*(.*?)\*\*/g);
+        const isAllBold = boldParts.length === 3 && boldParts[0] === "" && boldParts[2] === "";
+
+        if (isAllBold) {
+          elements.push(
+            <p key={i} className="text-sm font-semibold text-foreground mt-4 mb-2">
+              {parseInlineLinks(boldParts[1])}
+            </p>
+          );
+        } else {
+          const rendered = boldParts.map((part, j) =>
+            j % 2 === 1
+              ? <strong key={j} className="text-foreground font-medium">{part}</strong>
+              : parseInlineLinks(part)
+          );
+          elements.push(
+            <p key={i} className="text-sm text-muted-foreground leading-[1.9] mb-3">
+              {rendered}
+            </p>
+          );
+        }
+      }
+    });
+
+    flushList();
+    return elements;
+  };
+
   const related = articles.filter(a => a.slug !== article.slug).slice(0, 2);
 
   return (
@@ -118,8 +192,10 @@ const BlogArticle = () => {
 
           {/* Article header */}
           <div className="mb-8">
-            <span className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-sm mb-4 inline-block"
-              style={{ background: "#C6A75E", color: "#F4EFEA" }}>
+            <span
+              className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-sm mb-4 inline-block"
+              style={{ background: "#C6A75E", color: "#F4EFEA" }}
+            >
               {article.category}
             </span>
             <h1 className="font-heading text-2xl md:text-3xl lg:text-4xl font-normal text-foreground leading-snug mb-4 mt-3">
@@ -144,7 +220,7 @@ const BlogArticle = () => {
             />
           </div>
 
-          {/* Content */}
+          {/* Article content */}
           <article className="mb-16">
             {renderContent(article.content)}
           </article>
@@ -169,7 +245,11 @@ const BlogArticle = () => {
               <h2 className="font-heading text-xl font-normal text-foreground mb-6">Articles similaires</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {related.map(rel => (
-                  <Link key={rel.slug} to={`/blog/${rel.slug}`} className="group block border border-border rounded-sm p-5 hover:border-gold transition-colors">
+                  <Link
+                    key={rel.slug}
+                    to={`/blog/${rel.slug}`}
+                    className="group block border border-border rounded-sm p-5 hover:border-gold transition-colors"
+                  >
                     <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{rel.category}</span>
                     <h3 className="font-heading text-base font-normal text-foreground mt-1 mb-2 leading-snug group-hover:text-gold transition-colors">
                       {rel.title}
@@ -183,10 +263,14 @@ const BlogArticle = () => {
 
           {/* Back to blog */}
           <div className="mt-12 pt-8 border-t border-border">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+            >
               <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} /> Retour au blog
             </Link>
           </div>
+
         </div>
       </main>
       <Footer />
