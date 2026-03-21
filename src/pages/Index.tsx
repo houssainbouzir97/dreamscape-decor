@@ -7,6 +7,7 @@ import BrandStory from "@/components/BrandStory";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import SocialProof from "@/components/SocialProof";
 import CTASection from "@/components/CTASection";
+import HomeQA from "@/components/HomeQA";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PromotionBanner from "@/components/PromotionBanner";
@@ -32,6 +33,7 @@ const Index = () => {
         <CustomerPhotoStrip />
         <WhyChooseUs />
         <SocialProof />
+        <HomeQA />
         <CTASection />
       </main>
       <Footer />
