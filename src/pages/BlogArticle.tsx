@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { getArticleBySlug, articles } from "@/data/articles";
+import { productImageMap } from "@/lib/productImages";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
@@ -28,13 +29,12 @@ const BlogArticle = () => {
     );
   }
 
-  // Article schema
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": article.title,
     "description": article.metaDescription,
-    "image": `https://dreamscapedecor.art${article.coverImage}`,
+    "image": `https://dreamscapedecor.art/og-image.jpg`,
     "datePublished": article.date,
     "author": {
       "@type": "Organization",
@@ -44,10 +44,7 @@ const BlogArticle = () => {
     "publisher": {
       "@type": "Organization",
       "name": "Dreamscape Decor",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://dreamscapedecor.art/logo.webp",
-      },
+      "logo": { "@type": "ImageObject", "url": "https://dreamscapedecor.art/logo.webp" },
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -65,7 +62,7 @@ const BlogArticle = () => {
     ],
   };
 
-  // Parse [[text|/url]] into React elements with proper Link components
+  // Parse [[text|/url]] into React Link elements
   const parseInlineLinks = (text: string): React.ReactNode[] => {
     const parts = text.split(/\[\[([^\]]+)\|([^\]]+)\]\]/g);
     const result: React.ReactNode[] = [];
@@ -76,21 +73,23 @@ const BlogArticle = () => {
         const linkText = parts[i];
         const linkUrl = parts[i + 1];
         result.push(
-          <Link
-            key={i}
-            to={linkUrl}
-            className="text-gold underline underline-offset-2 hover:opacity-80 transition-opacity"
-          >
+          <Link key={i} to={linkUrl} className="text-gold underline underline-offset-2 hover:opacity-80 transition-opacity">
             {linkText}
           </Link>
         );
-        i++; // skip url part
+        i++;
       }
     }
     return result;
   };
 
-  // Render content with headings, lists, bold and internal links
+  // Parse {{imageKey|alt}} syntax for inline images
+  const parseImageTag = (line: string) => {
+    const match = line.match(/^\{\{([^|]+)\|([^}]+)\}\}$/);
+    if (!match) return null;
+    return { imageKey: match[1], alt: match[2] };
+  };
+
   const renderContent = (content: string) => {
     const lines = content.split("\n");
     const elements: React.ReactNode[] = [];
@@ -108,6 +107,28 @@ const BlogArticle = () => {
     };
 
     lines.forEach((line, i) => {
+      // Check for image tag
+      const imgTag = parseImageTag(line.trim());
+      if (imgTag) {
+        flushList();
+        const src = productImageMap[imgTag.imageKey];
+        if (src) {
+          elements.push(
+            <div key={i} className="my-6 overflow-hidden rounded-sm" style={{ aspectRatio: "16/9" }}>
+              <img
+                src={src}
+                alt={imgTag.alt}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={800}
+                height={450}
+              />
+            </div>
+          );
+        }
+        return;
+      }
+
       if (line.startsWith("## ")) {
         flushList();
         elements.push(
@@ -124,7 +145,6 @@ const BlogArticle = () => {
         );
       } else if (line.startsWith("- ")) {
         const itemContent = line.replace("- ", "");
-        // Handle bold in list items
         const boldParts = itemContent.split(/\*\*(.*?)\*\*/g);
         const rendered = boldParts.map((part, j) =>
           j % 2 === 1
@@ -142,10 +162,8 @@ const BlogArticle = () => {
         elements.push(<div key={i} className="h-1" />);
       } else {
         flushList();
-        // Handle bold + inline links
         const boldParts = line.split(/\*\*(.*?)\*\*/g);
         const isAllBold = boldParts.length === 3 && boldParts[0] === "" && boldParts[2] === "";
-
         if (isAllBold) {
           elements.push(
             <p key={i} className="text-sm font-semibold text-foreground mt-4 mb-2">
@@ -190,12 +208,10 @@ const BlogArticle = () => {
             <span className="text-foreground truncate max-w-[200px]">{article.title}</span>
           </nav>
 
-          {/* Article header */}
+          {/* Header */}
           <div className="mb-8">
-            <span
-              className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-sm mb-4 inline-block"
-              style={{ background: "#C6A75E", color: "#F4EFEA" }}
-            >
+            <span className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-sm mb-4 inline-block"
+              style={{ background: "#C6A75E", color: "#F4EFEA" }}>
               {article.category}
             </span>
             <h1 className="font-heading text-2xl md:text-3xl lg:text-4xl font-normal text-foreground leading-snug mb-4 mt-3">
@@ -211,7 +227,7 @@ const BlogArticle = () => {
           {/* Cover image */}
           <div className="overflow-hidden rounded-sm mb-10" style={{ aspectRatio: "16/9" }}>
             <img
-              src={article.coverImage}
+              src={productImageMap[article.coverImage] || "/og-image.jpg"}
               alt={article.title}
               className="w-full h-full object-cover"
               width={900}
@@ -220,36 +236,29 @@ const BlogArticle = () => {
             />
           </div>
 
-          {/* Article content */}
+          {/* Content */}
           <article className="mb-16">
             {renderContent(article.content)}
           </article>
 
-          {/* CTA box */}
+          {/* CTA */}
           <div className="border-l-4 border-gold bg-secondary/40 p-6 rounded-sm mb-16">
             <p className="text-sm font-medium text-foreground mb-2">Découvrez notre collection</p>
             <p className="text-xs text-muted-foreground leading-relaxed mb-4">
               Tous nos tableaux sont fabriqués en Alucobond premium. Livraison COD dans les 24 gouvernorats de Tunisie.
             </p>
-            <Link
-              to="/produits"
-              className="inline-flex items-center px-6 py-3 bg-accent text-accent-foreground text-xs font-medium uppercase tracking-[0.15em] hover:opacity-90 transition-opacity"
-            >
+            <Link to="/produits" className="inline-flex items-center px-6 py-3 bg-accent text-accent-foreground text-xs font-medium uppercase tracking-[0.15em] hover:opacity-90 transition-opacity">
               Voir la Collection →
             </Link>
           </div>
 
-          {/* Related articles */}
+          {/* Related */}
           {related.length > 0 && (
             <div>
               <h2 className="font-heading text-xl font-normal text-foreground mb-6">Articles similaires</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {related.map(rel => (
-                  <Link
-                    key={rel.slug}
-                    to={`/blog/${rel.slug}`}
-                    className="group block border border-border rounded-sm p-5 hover:border-gold transition-colors"
-                  >
+                  <Link key={rel.slug} to={`/blog/${rel.slug}`} className="group block border border-border rounded-sm p-5 hover:border-gold transition-colors">
                     <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{rel.category}</span>
                     <h3 className="font-heading text-base font-normal text-foreground mt-1 mb-2 leading-snug group-hover:text-gold transition-colors">
                       {rel.title}
@@ -261,16 +270,12 @@ const BlogArticle = () => {
             </div>
           )}
 
-          {/* Back to blog */}
+          {/* Back */}
           <div className="mt-12 pt-8 border-t border-border">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
-            >
+            <Link to="/blog" className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider">
               <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} /> Retour au blog
             </Link>
           </div>
-
         </div>
       </main>
       <Footer />
