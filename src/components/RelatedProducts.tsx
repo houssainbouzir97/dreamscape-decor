@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { products } from "@/data/products";
 import { productImageMap } from "@/lib/productImages";
 import { getEffectivePrice, PROMOTION } from "@/config/promotion";
+import PromotionBadge from "@/components/PromotionBadge";
 
 interface RelatedProductsProps {
   currentProductId: string;
@@ -177,22 +178,19 @@ const RelatedProducts = ({ currentProductId, category }: RelatedProductsProps) =
               style={{ width: CARD_WIDTH, marginRight: GAP }}
               draggable={false}
             >
+              {PROMOTION.active && (
+                <div className="mb-1.5 flex justify-start">
+                  <PromotionBadge />
+                </div>
+              )}
               <div className="relative aspect-[4/5] overflow-hidden bg-secondary/50 rounded-sm mb-3">
                 <img
                   src={productImageMap[product.image]}
                   alt={product.name}
-                  className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  className="w-full h-full object-contain object-[center_48%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   loading="lazy"
                   draggable={false}
                 />
-                {PROMOTION.active && (
-                  <span
-                    className="absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-sm uppercase tracking-[0.06em]"
-                    style={{ background: "#C6A75E", color: "#F4EFEA" }}
-                  >
-                    -{PROMOTION.discountPercentage}%
-                  </span>
-                )}
               </div>
 
               <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] mb-1">

@@ -22,9 +22,9 @@ export interface PromotionConfig {
 
 export const PROMOTION: PromotionConfig = {
   active: true,
-  name: "Ramadan",
-  label: "Ramadan",
-  emoji: "🌙",
+  name: "Printemps2026",
+  label: "Printemps",
+  emoji: "✨",
   discountPercentage: 20,
 };
 
@@ -44,10 +44,10 @@ export function getEffectivePrice(basePrice: number): number {
 }
 
 /**
- * Badge label shown on product cards, e.g. "-20% Ramadan"
+ * Badge label on product cards (above image, does not use PROMOTION.label — set wording here).
  */
 export function getPromotionBadgeLabel(): string {
-  return `-${PROMOTION.discountPercentage}% ${PROMOTION.label}`;
+  return `-${PROMOTION.discountPercentage}% sur toute la collection`;
 }
 
 /**

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { productImageMap } from "@/lib/productImages";
 import { getEffectivePrice, PROMOTION } from "@/config/promotion";
+import PromotionBadge from "@/components/PromotionBadge";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const CARD_WIDTH = 260;
@@ -128,12 +129,17 @@ const ProductShowcase = () => {
               style={{ width: CARD_WIDTH, marginRight: GAP }}
               draggable={false}
             >
+              {PROMOTION.active && (
+                <div className="mb-1.5 flex justify-start">
+                  <PromotionBadge />
+                </div>
+              )}
               {/* Image */}
               <div className="relative overflow-hidden rounded-sm mb-3" style={{ aspectRatio: "4/5" }}>
                 <img
                   src={productImageMap[product.image]}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-[0.82]"
+                  className="w-full h-full object-cover object-[center_44%] transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-[0.82]"
                   loading="lazy"
                   draggable={false}
                 />
@@ -146,13 +152,6 @@ const ProductShowcase = () => {
                     Voir
                   </p>
                 </div>
-                {/* Promo badge */}
-                {PROMOTION.active && (
-                  <span className="absolute top-2 left-2 text-[9px] font-medium px-2 py-0.5 rounded-sm uppercase tracking-[0.06em]"
-                    style={{ background: "#C6A75E", color: "#F4EFEA" }}>
-                    -{PROMOTION.discountPercentage}%
-                  </span>
-                )}
               </div>
 
               {/* Info */}

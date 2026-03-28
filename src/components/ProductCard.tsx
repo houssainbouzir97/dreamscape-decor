@@ -5,7 +5,7 @@ import { Product } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import { productImageMap } from "@/lib/productImages";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { getEffectivePrice } from "@/config/promotion";
+import { getEffectivePrice, PROMOTION } from "@/config/promotion";
 import PriceDisplay from "./PriceDisplay";
 import PromotionBadge from "./PromotionBadge";
 
@@ -49,6 +49,11 @@ const ProductCard = ({ product }: { product: Product }) => {
     >
       {/* Image with luxury overlay animation */}
       <Link to={`/produit/${product.slug}`} onClick={handleCardClick}>
+        {PROMOTION.active && (
+          <div className="mb-2 flex justify-start">
+            <PromotionBadge />
+          </div>
+        )}
         <div
           className="relative overflow-hidden bg-secondary/50 mb-3 rounded-sm"
           style={{ aspectRatio: "4/5" }}
@@ -57,7 +62,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <img
             src={productImageMap[product.image]}
             alt={product.name}
-            className={`w-full h-full object-cover transition-all duration-700 ease-out
+            className={`w-full h-full object-cover object-[center_44%] transition-all duration-700 ease-out
               group-hover:scale-[1.04] group-hover:brightness-[0.82]
               ${isActive ? "scale-[1.04] brightness-[0.82]" : ""}
             `}
@@ -93,11 +98,6 @@ const ProductCard = ({ product }: { product: Product }) => {
             >
               Voir le produit
             </p>
-          </div>
-
-          {/* Promotion badge */}
-          <div className="absolute top-2.5 left-2.5">
-            <PromotionBadge />
           </div>
         </div>
       </Link>

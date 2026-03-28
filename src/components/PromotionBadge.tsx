@@ -5,7 +5,7 @@ const PromotionBadge = () => {
 
   return (
     <span
-      className="inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-medium tracking-[0.08em] uppercase"
+      className="inline-flex items-center px-2.5 py-1 rounded-sm text-[10px] sm:text-[11px] font-medium tracking-wide text-left normal-case leading-snug max-w-full"
       style={{ background: "#C6A75E", color: "#F4EFEA" }}
     >
       {getPromotionBadgeLabel()}

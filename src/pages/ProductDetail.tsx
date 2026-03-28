@@ -7,7 +7,7 @@ import ProductGallery from "@/components/ProductGallery";
 import RelatedProducts from "@/components/RelatedProducts";
 import { getProductBySlug } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
-import { getEffectivePrice } from "@/config/promotion";
+import { getEffectivePrice, PROMOTION } from "@/config/promotion";
 import PriceDisplay from "@/components/PriceDisplay";
 import PromotionBadge from "@/components/PromotionBadge";
 import PromotionBanner from "@/components/PromotionBanner";
@@ -169,7 +169,14 @@ const ProductDetail = () => {
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-            <ProductGallery imageKey={product.image} productName={product.name} />
+            <div>
+              {PROMOTION.active && (
+                <div className="mb-2 flex justify-start">
+                  <PromotionBadge />
+                </div>
+              )}
+              <ProductGallery imageKey={product.image} productName={product.name} />
+            </div>
 
             <div className="flex flex-col justify-center">
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-3">{product.category}</p>
@@ -183,10 +190,6 @@ const ProductDetail = () => {
                   ))}
                 </div>
                 <span className="text-xs text-muted-foreground">{avgRating} · {reviews.length} avis vérifiés</span>
-              </div>
-
-              <div className="mb-5">
-                <PromotionBadge />
               </div>
 
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">{product.description}</p>
