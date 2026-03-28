@@ -70,6 +70,16 @@ const allReviews: Record<string, { name: string; city: string; text: string; rat
     { name: "Wafa B.", city: "Sfax", text: "Cadeau parfait, ma mère était très touchée. Qualité premium.", rating: 5 },
     { name: "Lotfi M.", city: "Sousse", text: "Très beau, conforme aux photos. Je suis très satisfait.", rating: 5 },
   ],
+  "DSC-023": [
+    { name: "Karim L.", city: "Sousse", text: "Parfait au-dessus de notre coin café. Les invités adorent le détail du cœur.", rating: 5 },
+    { name: "Sonia M.", city: "Tunis", text: "Livraison rapide, découpe très propre. Ambiance salon de thé assurée.", rating: 5 },
+    { name: "Mehdi F.", city: "Sfax", text: "Qualité Alucobond au rendu, comme sur les photos. Je recommande.", rating: 5 },
+  ],
+  "DSC-024": [
+    { name: "Leïla K.", city: "Nabeul", text: "Coffee Time dans la cuisine : tout le monde me demande où je l’ai acheté.", rating: 5 },
+    { name: "Omar B.", city: "Tunis", text: "Design sobre, très lisible de loin. Idéal pour notre petite salle à manger.", rating: 5 },
+    { name: "Hend R.", city: "Ariana", text: "Installation en quelques minutes, finition nickel.", rating: 5 },
+  ],
 };
 
 const getReviews = (productId: string) => {

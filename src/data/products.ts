@@ -331,6 +331,37 @@ export const products: Product[] = [
     material: "Alucobond",
     inStock: true,
   },
+  {
+    id: "DSC-023",
+    name: "Coffee & Tea",
+    slug: "coffee-and-tea",
+    description: "Typographie élégante Coffee & Tea avec tasse et cœur — idéal cuisine, coin café ou salon de thé. Ambiance chaleureuse, découpe métal précise.",
+    category: "Citation",
+    image: "DSC-023",
+    sizes: [
+      { label: "50×45 cm", dimensions: "50x45", price: 55 },
+      { label: "60×54 cm", dimensions: "60x54", price: 69 },
+      { label: "70×63 cm", dimensions: "70x63", price: 85 },
+    ],
+    material: "Alucobond",
+    badge: "Nouveau",
+    inStock: true,
+  },
+  {
+    id: "DSC-024",
+    name: "Coffee Time",
+    slug: "coffee-time",
+    description: "Tasse à café stylisée et bandeau Coffee Time — parfait pour cuisine, pause café ou décoration murale type brasserie. Finition métal noir mat.",
+    category: "Citation",
+    image: "DSC-024",
+    sizes: [
+      { label: "60×55 cm", dimensions: "60x55", price: 69 },
+      { label: "70×64 cm", dimensions: "70x64", price: 85 },
+    ],
+    material: "Alucobond",
+    badge: "Nouveau",
+    inStock: true,
+  },
 ];
 
 export const categories = ["Tous", "Nature", "Abstrait", "Islamique", "Citation"];

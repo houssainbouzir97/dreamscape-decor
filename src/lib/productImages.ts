@@ -41,6 +41,13 @@ import dsc019 from "@/assets/DSC-019.jpg";
 import dsc020 from "@/assets/DSC-020.jpg";
 import dsc021 from "@/assets/DSC-021.webp";
 import dsc022 from "@/assets/DSC-022.jpg";
+import dsc023 from "@/assets/DSC-023.png";
+import dsc023_2 from "@/assets/DSC-023-2.png";
+import dsc023_3 from "@/assets/DSC-023-3.png";
+import dsc023_4 from "@/assets/DSC-023-4.png";
+import dsc024 from "@/assets/DSC-024.png";
+import dsc024_2 from "@/assets/DSC-024-2.png";
+import dsc024_3 from "@/assets/DSC-024-3.png";
 
 export const productImageMap: Record<string, string> = {
   "DSC-001": dsc001,
@@ -86,6 +93,13 @@ export const productImageMap: Record<string, string> = {
   "DSC-020": dsc020,
   "DSC-021": dsc021,
   "DSC-022": dsc022,
+  "DSC-023": dsc023,
+  "DSC-023-2": dsc023_2,
+  "DSC-023-3": dsc023_3,
+  "DSC-023-4": dsc023_4,
+  "DSC-024": dsc024,
+  "DSC-024-2": dsc024_2,
+  "DSC-024-3": dsc024_3,
 };
 
 export type MediaItem = {
@@ -138,5 +152,16 @@ export const productGalleryMap: Record<string, MediaItem[]> = {
     { type: "image", src: dsc013, key: "DSC-013" },
     { type: "image", src: dsc013_2, key: "DSC-013-2" },
     { type: "video", src: "/videos/DSC-013.mp4", key: "DSC-013-video" },
+  ],
+  "DSC-023": [
+    { type: "image", src: dsc023, key: "DSC-023" },
+    { type: "image", src: dsc023_2, key: "DSC-023-2" },
+    { type: "image", src: dsc023_3, key: "DSC-023-3" },
+    { type: "image", src: dsc023_4, key: "DSC-023-4" },
+  ],
+  "DSC-024": [
+    { type: "image", src: dsc024, key: "DSC-024" },
+    { type: "image", src: dsc024_2, key: "DSC-024-2" },
+    { type: "image", src: dsc024_3, key: "DSC-024-3" },
   ],
 };

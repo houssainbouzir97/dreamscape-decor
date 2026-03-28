@@ -13,13 +13,242 @@ export interface BlogArticle {
 
 export const articles: BlogArticle[] = [
 
+  // ─── PRIORITÉ SEMRUSH / TUNISIE (sans doublon des articles existants) ───────
+
+  {
+    slug: "decoration-chambre-tunisie-guide-complet",
+    title: "Décoration Chambre Tunisie : Guide Complet (Couleurs, Lumière & Mur)",
+    metaTitle: "Décoration Chambre Tunisie – Guide Complet 2026 | Dreamscape Decor",
+    metaDescription: "Comment décorer une chambre en Tunisie ? Couleurs, lumière, mobilier et art mural métal. Idées modernes, erreurs à éviter et livraison COD partout.",
+    category: "Guide",
+    date: "28 mars 2026",
+    readTime: "8 min",
+    excerpt: "Au-delà du mur : une chambre réussie combine lumière, palette et point focal. Voici un guide pratique pensé pour les intérieurs tunisiens — avec l’art mural comme signature.",
+    coverImage: "DSC-008",
+    content: `
+En Tunisie, la chambre est souvent la pièce la plus personnelle — et la plus mal optimisée. On y accumule les meubles, on néglige la lumière, puis on cherche « un tableau » pour sauver le mur. La bonne approche commence par une intention claire : repos, intimité, ou cocon design.
+
+## 1. Couleurs : moins de teintes, plus de cohérence
+
+Trois règles simples pour une chambre contemporaine :
+
+- **Une couleur dominante** (murs ou linge) + **une couleur d’accent** (coussin, lampe, œuvre murale).
+- **Les tons chauds** (beige, sable, vert sauge) fonctionnent très bien avec le métal noir mat ou anthracite.
+- **Évitez** cinq couleurs différentes : la chambre perd son calme.
+
+## 2. Lumière : la variable la plus sous-estimée
+
+Une belle décoration ne « lit » bien qu’avec une lumière maîtrisée :
+
+- **Lumière d’ambiance** (appliques, bandeau LED indirect) pour le soir.
+- **Lumière fonctionnelle** près du miroir ou du dressing.
+- **Évitez** un seul plafonnier froid au centre : il écrase les volumes.
+
+## 3. Le mur focal : l’art mural comme ancrage
+
+Le mur de la tête de lit (ou le mur face au lit) doit porter **une** décision forte. En métal Alucobond, la découpe laser donne une présence nette sans encombrer visuellement.
+
+Pour une chambre adulte, des pièces comme [[Kissing Silhouette|/produit/kissing-silhouette]] ou [[Ethereal Muse|/produit/ethereal-muse]] créent une présence intime. Pour une chambre plus lumineuse et naturelle, [[Branch of Life|/produit/branch-of-life]] ou [[Circle of Life|/produit/circle-of-life]] apportent du mouvement sans agresser.
+
+{{DSC-008|Circle of Life art mural métal chambre à coucher style moderne Tunisie}}
+
+## 4. Mobilier : la chambre « respire » quand le sol est lisible
+
+Gardez des lignes simples : lit bas, tables de chevet fines, peu d’objets sur les surfaces. Un mur fort remplace trois cadres moyens qui se battent en duel.
+
+## 5. Enfant & ado : une chambre qui grandit
+
+Pour une chambre d’enfant, privilégiez des motifs lisibles et positifs ([[Sleeping Panda|/produit/sleeping-panda]], [[Butterfly Dance|/produit/butterfly-dance]]) et une taille adaptée au mur — voir notre [[guide des tailles|/blog/choisir-taille-tableau-mural]].
+
+## 6. Où l’art mural remplace la déco « gadget »
+
+Plutôt que d’empiler cadres et stickers, un tableau métal premium devient **le** repère visuel de la pièce. Il se nettoie facilement, résiste à l’humidité modérée, et vieillit mieux qu’une toile imprimée.
+
+## FAQ
+
+**Quelle est la différence avec l’article « décoration murale chambre » ?**
+Celui-ci couvre la chambre **dans son ensemble** (couleurs, lumière, agencement) ; l’autre se concentre sur le mur et la tête de lit.
+
+**Quelle taille au-dessus du lit ?**
+En général 60×60 cm à 100×49 cm selon la largeur du lit — détails dans [[notre guide taille|/blog/choisir-taille-tableau-mural]].
+
+**Livrez-vous dans toute la Tunisie ?**
+Oui, avec paiement à la livraison — voir [[livraison|/blog/livraison-decoration-murale-tunisie]].
+
+Parcourez la [[collection|/produits]] et choisissez la pièce qui correspond à votre univers.
+    `.trim(),
+  },
+
+  {
+    slug: "tableau-decoratif-mural-tunisie-comment-choisir",
+    title: "Tableau Décoratif Mural en Tunisie : Comment Choisir (Style, Taille, Matière)",
+    metaTitle: "Tableau Décoratif Mural Tunisie – Guide d’Achat | Dreamscape Decor",
+    metaDescription: "Tableau décoratif mural en Tunisie : critères de choix, tailles, matières, styles salon et chambre. Alucobond, tendances 2026 et livraison COD.",
+    category: "Guide",
+    date: "28 mars 2026",
+    readTime: "7 min",
+    excerpt: "Un tableau décoratif mural doit être choisi comme un meuble : style, proportion, matière et durabilité. Voici le cadre de décision que nous appliquons en boutique.",
+    coverImage: "DSC-010-4",
+    content: `
+Le marché tunisien propose énormément d’affiches et de toiles à bas prix — puis on se demande pourquoi le rendu « ne ressemble pas aux photos ». Un vrai tableau décoratif mural se juge sur **la présence matérielle** : épaisseur, précision des contours, tenue dans le temps.
+
+## 1. Définir l’intention du mur
+
+Avant le style, la question est : **que doit faire** ce tableau ?
+
+- **Structurer** le salon (point focal)
+- **Adoucir** une pièce trop froide
+- **Donner du sens** (symbolique, culturel, poétique)
+- **Professionnaliser** un bureau ou un cabinet
+
+## 2. Choisir la bonne taille (sans erreur)
+
+La règle la plus fiable reste la proportion au meuble ou au mur : un tableau trop petit « disparaît », un tableau trop large écrase. Notre [[guide complet|/blog/choisir-taille-tableau-mural]] détaille les règles et exemples par pièce.
+
+## 3. Matière : pourquoi le métal Alucobond se démarque
+
+Le métal découpé au laser offre un contrôle de détail impossible sur toile. L’Alucobond ajoute légèreté, tenue UV et facilité d’entretien — idéal en Tunisie selon les pièces et l’exposition à la lumière.
+
+{{DSC-010-4|Tableau décoratif mural métal design contemporain salon Tunisie}}
+
+## 4. Styles qui fonctionnent en 2026
+
+- **Nature / biophilie** : [[Tree of Life|/produit/tree-of-life]], [[Birds of Life|/produit/birds-of-life]]
+- **Abstrait / contemporain** : [[Cubist Faces|/produit/cubist-faces]], [[Geometric Shapes|/produit/geometric-shapes]]
+- **Symbolique** : [[Khomssa|/produit/khomssa]], [[The Secret Ingredient|/produit/the-secret-ingredient]]
+
+## 5. Où acheter sans se tromper
+
+Méfiez-vous des reproductions floues et des formats « universels » : un tableau décoratif premium doit avoir une finition propre, un rendu net à distance, et un emballage solide à la livraison.
+
+## FAQ
+
+**Est-ce le même sujet que « tableau métal vs toile » ?**
+Non : ici c’est un **guide d’achat**. La comparaison détaillée est dans [[tableau métal vs toile|/blog/tableau-metal-vs-toile-lequel-choisir]].
+
+**Puis-je utiliser le tableau en extérieur ?**
+Oui sur des modèles adaptés et des surfaces préparées — lisez [[décoration extérieure|/blog/decoration-murale-exterieure-metal-tunisie]].
+
+Découvrez tous nos [[tableaux décoratifs|/produits]] et commandez en ligne avec livraison COD.
+    `.trim(),
+  },
+
+  {
+    slug: "decoration-murale-guide-complet-tunisie",
+    title: "Décoration Murale en Tunisie : Le Guide Complet (Types, Budgets & Conseils)",
+    metaTitle: "Décoration Murale Tunisie – Guide Complet | Dreamscape Decor",
+    metaDescription: "Décoration murale : guide complet pour la Tunisie — types d’œuvres, matériaux, budgets, erreurs fréquentes. Art mural métal Alucobond, livraison 24 gouvernorats.",
+    category: "Expertise",
+    date: "28 mars 2026",
+    readTime: "9 min",
+    excerpt: "Une décoration murale réussie n’est pas une affaire de chance : c’est un choix de style, de format et de matériau. Voici le guide de référence pour la Tunisie.",
+    coverImage: "DSC-001-2",
+    content: `
+La **décoration murale** est devenue le raccourci le plus efficace pour personnaliser un intérieur — surtout quand on ne peut pas tout refaire (sol, menuiseries, mobilier). En Tunisie, les intérieurs varient entre appartements compacts, villas, et espaces mixtes salon-salle à manger : le mur est souvent le seul endroit où l’on peut « signifier » son style.
+
+## 1. Les grandes familles de décoration murale
+
+- **Œuvres imprimées / posters** — accessibles, mais sensibles à la lumière et au vieillissement.
+- **Toiles** — chaleureuses, mais variables en qualité.
+- **Métal découpé** — précision, relief visuel, durabilité (notre cœur de métier).
+- **Panneaux décoratifs** — utiles pour grandes surfaces, moins « signature » qu’une œuvre unique.
+
+## 2. Comment budgéter (sans se mentir)
+
+Un mur « premium » coûte souvent **moins cher** que trois achats ratés qui se remplacent. Posez-vous :
+
+- Est-ce que je veux une pièce calibrée pour 5 ans ou 6 mois ?
+- Est-ce que je cherche du **contraste** (noir sur mur clair) ou de la **fusion** (tons proches) ?
+
+## 3. Pourquoi le métal Alucobond s’impose sur certains murs
+
+L’Alucobond combine légèreté et rigidité : idéal pour des découpes fines et des pièces imposantes sans lourdeur. Pour comprendre la matière en profondeur, lisez notre article [[Alucobond : matériau|/blog/alucobond-materiau-decoration-murale]].
+
+{{DSC-001-2|Décoration murale métal salon contemporain Tunisie art mural Alucobond}}
+
+## 4. Les erreurs les plus fréquentes
+
+- **Trop de petits cadres** au lieu d’un point focal fort
+- **Mauvaise hauteur** (trop haut au-dessus du canapé)
+- **Négliger la lumière** (un tableau vit à la lumière indirecte)
+- **Ignorer l’échelle** : voir [[guide des tailles|/blog/choisir-taille-tableau-mural]]
+
+## 5. Liens utiles selon votre besoin
+
+- Idées salon : [[8 idées pour le salon|/blog/decoration-murale-tunisie-idees-salon]]
+- Extérieur & UV : [[décoration murale extérieure|/blog/decoration-murale-exterieure-metal-tunisie]]
+- Tendances : [[tendances 2026|/blog/decoration-murale-tendances-2026]]
+
+## FAQ
+
+**Ce guide remplace-t-il l’article « idées salon » ?**
+Non : il donne le cadre général ; l’article salon reste une liste d’idées très concrètes.
+
+**Proposez-vous de l’installation ?**
+Chaque commande inclut le système de fixation — installation simple, étapes dans [[installer et entretenir|/blog/installer-entretenir-tableau-metal]].
+
+Explorez la [[collection Dreamscape Decor|/produits]] et passez commande avec livraison COD dans toute la Tunisie.
+    `.trim(),
+  },
+
+  {
+    slug: "decoration-murale-bois-vs-metal-alucobond-tunisie",
+    title: "Décoration Murale Bois vs Métal Alucobond : Que Choisir en Tunisie ?",
+    metaTitle: "Décoration Murale Bois vs Métal Alucobond | Dreamscape Decor Tunisie",
+    metaDescription: "Bois ou métal Alucobond pour votre décoration murale en Tunisie ? Comparaison honnête : humidité, UV, poids, style, entretien et prix dans le temps.",
+    category: "Guide",
+    date: "28 mars 2026",
+    readTime: "7 min",
+    excerpt: "Le bois chaleureux, le métal précis : les deux peuvent magnifier un mur — mais pas dans les mêmes conditions. Voici une comparaison utile pour trancher sans regret.",
+    coverImage: "DSC-019",
+    content: `
+Si vous hésitez entre une **décoration murale en bois** et une œuvre en **métal Alucobond**, ce n’est pas seulement une question de goût : c’est une question d’**environnement** (humidité, UV), de **poids**, et de **durée de vie**.
+
+## 1. Rendu visuel : chaleur vs précision
+
+Le bois massif ou contrecollé apporte une texture organique très appréciable en intérieur « cocoon ». Le métal découpé au laser apporte une **netteté de ligne** et un contraste moderne, surtout sur murs clairs tadelakt ou peinture mate.
+
+{{DSC-019|Décoration murale abstraite métal géométrique salon moderne Tunisie}}
+
+## 2. Humidité & climat (Tunisie)
+
+Dans les pièces humides ou mal ventilées, le bois peut gonfler, travailler, ou nécessiter des finitions régulières. L’Alucobond est **non poreux** et beaucoup plus stable dans le temps — un point décisif près des façades, des cuisines ou de certaines salles de bain ventilées.
+
+## 3. UV & extérieur
+
+Pour un mur extérieur ou une terrasse exposée, le métal avec revêtement adapté est généralement plus prévisible que le bois sans entretien lourd. Pour les bonnes pratiques extérieures, lisez [[notre guide extérieur|/blog/decoration-murale-exterieure-metal-tunisie]].
+
+## 4. Poids & installation
+
+Les gros panneaux bois peuvent être lourds ; l’Alucobond reste **léger** pour une rigidité élevée — pratique pour accrochage simple.
+
+## 5. Prix « sur 10 ans »
+
+Un tableau bas coût se remplace plusieurs fois. Un métal premium, malgré un ticket d’entrée plus élevé, peut représenter un **coût d’usage** plus bas si vous gardez la pièce longtemps.
+
+## 6. Et la toile ?
+
+Si vous hésitez aussi avec la toile, lisez [[tableau métal vs toile|/blog/tableau-metal-vs-toile-lequel-choisir]] — c’est le comparatif le plus proche de l’usage quotidien.
+
+## FAQ
+
+**Le bois est-il « moins moderne » ?**
+Non : c’est une esthétique différente. Le métal contemporain convient très bien aux intérieurs épurés tunisiens.
+
+**Puis-je mixer bois et métal ?**
+Oui : bois au mobilier, métal au mur — évitez de multiplier les matériaux sur le même segment de mur.
+
+Découvrez nos [[créations en métal|/produits]] et choisissez selon votre pièce, pas seulement selon la tendance du moment.
+    `.trim(),
+  },
+
   // ─── PILLAR 1: DÉCORATION MURALE TUNISIE ───────────────────────────────────
 
   {
     slug: "decoration-murale-tunisie-idees-salon",
     title: "Décoration Murale en Tunisie : 8 Idées pour Transformer Votre Salon",
-    metaTitle: "Décoration Murale Tunisie – 8 Idées pour Votre Salon | Dreamscape Decor",
-    metaDescription: "Découvrez 8 idées de décoration murale pour salon en Tunisie. Art mural métal, styles modernes et islamiques. Inspirations et conseils pratiques.",
+    metaTitle: "Décoration Murale Salon – 8 Idées Art Mural Tunisie | Dreamscape Decor",
+    metaDescription: "Décoration murale salon : 8 idées pour votre pièce en Tunisie. Tableaux métal Alucobond, styles modernes et islamiques. Livraison COD.",
     category: "Inspiration",
     date: "21 mars 2026",
     readTime: "6 min",
@@ -206,13 +435,13 @@ Consultez aussi [[comment choisir la bonne taille de tableau|/blog/choisir-taill
   {
     slug: "decoration-murale-bureau",
     title: "Décoration Murale Bureau : Comment Créer un Espace de Travail Inspirant",
-    metaTitle: "Décoration Murale Bureau à Domicile Tunisie | Dreamscape Decor",
-    metaDescription: "Décorez votre bureau à domicile ou professionnel avec des tableaux muraux en métal. Conseils, formats et styles pour un espace de travail qui inspire.",
+    metaTitle: "Décoration du Bureau – Art Mural Métal Tunisie | Dreamscape Decor",
+    metaDescription: "Décoration du bureau à domicile ou professionnel : tableaux muraux en métal Alucobond, formats, styles visioconférence. Conseils pour un mur qui inspire.",
     category: "Guide",
     date: "18 mars 2026",
-    readTime: "5 min",
+    readTime: "6 min",
     excerpt: "Votre bureau reflète votre identité professionnelle. Un mur bien décoré améliore la concentration, la créativité — et votre image en visioconférence.",
-    coverImage: "DSC-013",
+    coverImage: "DSC-017",
     content: `
 Le bureau à domicile est devenu un espace permanent dans les foyers tunisiens. Et depuis que les visioconférences sont devenues la norme, votre mur de fond est aussi votre identité professionnelle en ligne.
 
@@ -222,7 +451,11 @@ Le bureau à domicile est devenu un espace permanent dans les foyers tunisiens. 
 
 {{DSC-013|Tableau mural métal géométrique bureau professionnel tunisie}}
 
-**Les compositions épurées :** [[Solar Harmony Trio|/produit/solar-harmony-trio]], [[Window of Freedom|/produit/window-of-freedom]] — ils évoquent l'ouverture et la perspective.
+**Carte du monde & bureaux « voyage » :** pour un cabinet, une agence ou un espace où l’on reçoit des clients, [[World Map|/produit/world-map]] structure le mur et renvoie immédiatement à l’idée de projet international — sans surcharger le cadre.
+
+{{DSC-017|Carte du monde décoration murale métal bureau professionnel Tunisie}}
+
+**Les compositions épurées :** [[Solar Harmony Trio|/produit/solar-harmony-trio]], [[Window of Freedom|/produit/window-of-freedom]] — elles évoquent l'ouverture et la perspective.
 
 ## Le positionnement optimal pour la visioconférence
 
@@ -236,7 +469,9 @@ Le bureau à domicile est devenu un espace permanent dans les foyers tunisiens. 
 - **Bureau standard** — 60×60 à 90×45 cm
 - **Grand bureau** — 110×65 cm ou plus
 
-Pour les espaces commerciaux, consultez notre guide sur la [[décoration des cafés et restaurants en Tunisie|/blog/decoration-cafe-restaurant-tunisie]].
+Pour choisir sans erreur, suivez notre [[guide des tailles|/blog/choisir-taille-tableau-mural]].
+
+Pour les espaces commerciaux, consultez nos guides [[décoration café et restaurant|/blog/decoration-cafe-restaurant-tunisie]] et [[salon de thé|/blog/decoration-salon-de-the-tunisie]].
 
 ## FAQ
 
@@ -246,15 +481,15 @@ Si la lumière est frontale, oui. Positionnez le tableau légèrement en biais p
 **Peut-on mettre plusieurs tableaux dans un bureau ?**
 Oui, en composition cohérente — même famille de design, même ligne stylistique.
 
-Consultez [[comment choisir la bonne taille de tableau|/blog/choisir-taille-tableau-mural]] pour affiner votre choix.
+Parcourez la [[collection|/produits]] et affinez votre format avec [[comment choisir la bonne taille de tableau|/blog/choisir-taille-tableau-mural]].
     `.trim(),
   },
 
   {
     slug: "decoration-murale-exterieure-metal-tunisie",
     title: "Décoration Murale Extérieure en Métal : Le Guide Complet pour la Tunisie",
-    metaTitle: "Décoration Murale Extérieure Métal Tunisie – Guide Complet | Dreamscape Decor",
-    metaDescription: "Comment choisir une décoration murale extérieure résistante en Tunisie ? Alucobond, résistance UV, terrasse, jardin, façade. Guide pratique complet.",
+    metaTitle: "Décoration Murale Extérieure & Extérieur Tunisie – Alucobond | Dreamscape Decor",
+    metaDescription: "Décoration murale extérieure (et recherche « décoration murale exterieur ») : guide Tunisie. Alucobond, UV, terrasse, jardin, façade. Livraison COD.",
     category: "Guide",
     date: "17 mars 2026",
     readTime: "6 min",
@@ -312,13 +547,13 @@ Pour des idées d'application intérieure, consultez nos [[idées de décoration
   {
     slug: "decoration-cafe-restaurant-tunisie",
     title: "Décoration Café et Restaurant en Tunisie : L'Art Mural qui Fait la Différence",
-    metaTitle: "Décoration Café Restaurant Tunisie – Art Mural Métal | Dreamscape Decor",
-    metaDescription: "Comment décorer votre café ou restaurant en Tunisie avec des tableaux muraux en métal ? Conseils, styles et solutions durables pour espaces commerciaux.",
+    metaTitle: "Décoration Café Tunisie – Art Mural Métal Cafés & Restaurants | Dreamscape Decor",
+    metaDescription: "Décoration café et restaurant en Tunisie : tableaux muraux métal Alucobond, styles durables, mur focal et terrasse. Idées pour commerces.",
     category: "Professionnel",
     date: "16 mars 2026",
-    readTime: "6 min",
+    readTime: "7 min",
     excerpt: "Un café bien décoré ne se remarque pas seulement — il se partage. Voici comment l'art mural métal transforme vos espaces commerciaux en expériences mémorables.",
-    coverImage: "DSC-009-2",
+    coverImage: "DSC-023-2",
     content: `
 En Tunisie, un café ou un restaurant qui se démarque visuellement génère du contenu. Chaque client qui photographie votre mur décoré est un ambassadeur que vous n'avez pas eu à payer.
 
@@ -328,6 +563,12 @@ En Tunisie, un café ou un restaurant qui se démarque visuellement génère du 
 - **Entretien** — un chiffon humide suffit
 - **Impact visuel** — lisible depuis l'entrée ou la rue
 - **Durabilité** — 15-20 ans sans remplacement
+
+{{DSC-023-2|Décoration murale métal ambiance café moderne brique blanche Tunisie}}
+
+Pour un **coin bar ou cuisine ouverte** derrière le comptoir, des pièces typographiques comme [[Coffee & Tea|/produit/coffee-and-tea]] ou [[Coffee Time|/produit/coffee-time]] renforcent l'identité boisson et photographient très bien.
+
+{{DSC-023-4|Art mural métal coffee corner cuisine café Tunisie}}
 
 ## Les zones clés à décorer
 
@@ -347,23 +588,76 @@ Un mur de terrasse décoré avec [[Sunset of Freedom|/produit/sunset-of-freedom]
 
 ## Choisir le style selon votre concept
 
-**Café moderne :** [[Geometric Shapes|/produit/geometric-shapes]], [[Cubist Faces|/produit/cubist-faces]], [[Trio of Stillness|/produit/trio-of-stillness]]
+**Café moderne :** [[Geometric Shapes|/produit/geometric-shapes]], [[Cubist Faces|/produit/cubist-faces]], [[Trio of Stillness|/produit/trio-of-stillness]], [[Coffee Time|/produit/coffee-time]]
 
 **Café traditionnel :** [[Khomssa|/produit/khomssa]], [[Tree of Life|/produit/tree-of-life]]
 
 **Restaurant gastronomique :** [[Kissing Silhouette|/produit/kissing-silhouette]], [[Solar Harmony Trio|/produit/solar-harmony-trio]]
 
-**Salon de thé :** [[Butterfly Dance|/produit/butterfly-dance]], [[Window Birds|/produit/window-birds]]
+**Salon de thé :** voir notre guide dédié [[décoration salon de thé en Tunisie|/blog/decoration-salon-de-the-tunisie]] — et des pièces comme [[Coffee & Tea|/produit/coffee-and-tea]], [[Butterfly Dance|/produit/butterfly-dance]], [[Window Birds|/produit/window-birds]]
 
 ## FAQ
 
 **Quel format pour un café standard ?**
-Pour un mur focal principal, 110×65 cm minimum. Pour une grande salle, 145×85 cm ou un triptyque.
+Pour un mur focal principal, 110×65 cm minimum. Pour une grande salle, 145×85 cm ou un triptyque. Pour les formats compacts au-dessus d'un meuble, voir [[guide des tailles|/blog/choisir-taille-tableau-mural]].
 
 **Proposez-vous des commandes professionnelles ?**
 Oui. Contactez-nous sur WhatsApp pour un devis personnalisé.
 
 Consultez aussi notre guide sur la [[décoration murale extérieure|/blog/decoration-murale-exterieure-metal-tunisie]] pour vos terrasses.
+    `.trim(),
+  },
+
+  {
+    slug: "decoration-salon-de-the-tunisie",
+    title: "Décoration Salon de Thé en Tunisie : Ambiance Douce, Mur Focal & Art Mural",
+    metaTitle: "Décoration Salon de Thé Tunisie – Art Mural Métal | Dreamscape Decor",
+    metaDescription: "Comment décorer un salon de thé en Tunisie ? Mur selfie, lumière douce, art mural métal Coffee & Tea, formats et styles. Livraison COD.",
+    category: "Professionnel",
+    date: "29 mars 2026",
+    readTime: "7 min",
+    excerpt: "Un salon de thé se vit comme un rituel : calme, parfums, partage. Le bon décor mural fixe l’ambiance et donne envie de poster la photo.",
+    coverImage: "DSC-023-3",
+    content: `
+Un **salon de thé** en Tunisie n’est pas un simple café : on y vient pour la lenteur, la conversation et souvent une esthétique plus douce que les grandes salles bruyantes. Voici comment calibrer votre **décoration murale** pour que l’espace soit à la fois photogénique et authentique.
+
+## 1. Le mur « signature » — identité visuelle immédiate
+
+Un mur derrière le comptoir ou face aux banquettes doit porter une **identité claire**. Les pièces typographiques comme [[Coffee & Tea|/produit/coffee-and-tea]] ou [[Coffee Time|/produit/coffee-time]] lisent bien de loin et rappellent l’univers boisson sans encombrer.
+
+{{DSC-023|Coffee & Tea art mural métal cuisine salon de thé Tunisie}}
+
+## 2. Ambiance douce : lumière et matière
+
+Le métal Alucobond noir mat sur un mur clair ou pastel crée un contraste chic sans agresser. Évitez le plafonnier trop froid au centre — privilégiez une lumière tamisée sur les tables et un rappel lumineux sur le mur focal.
+
+{{DSC-023-3|Décoration murale Coffee & Tea ambiance rose salon de thé moderne}}
+
+## 3. Zone selfie et réseaux sociaux
+
+Comme pour les [[cafés et restaurants|/blog/decoration-cafe-restaurant-tunisie]], le fond de salle est souvent l’endroit des photos. Un mur décoré avec une œuvre lisible et une **hauteur d’œil** correcte (voir [[guide des tailles|/blog/choisir-taille-tableau-mural]]) augmente les partages organiques.
+
+{{DSC-024-2|Coffee Time décoration murale espace thé café cosy Tunisie}}
+
+## 4. Formats pour petits espaces
+
+Salles étroites : privilégiez un format moyen (ex. 50×45 cm à 60×54 cm sur [[Coffee & Tea|/produit/coffee-and-tea]]) plutôt que plusieurs petits cadres qui fragmentent le mur.
+
+## 5. Liens utiles
+
+- **Bureau** ou espace de gestion attenant : [[décoration du bureau|/blog/decoration-murale-bureau]]
+- **Terrasse** ou devanture : [[décoration murale extérieure|/blog/decoration-murale-exterieure-metal-tunisie]]
+- **Collection complète** : [[tableaux métal|/produits]]
+
+## FAQ
+
+**Salon de thé ou café : même déco ?**
+Non. Le salon de thé mise souvent sur une ambiance plus feutrée et des mots d’ambiance (thé, détente) ; le café peut pousser plus l’énergie et les grands formats.
+
+**Proposez-vous la livraison pour les pros ?**
+Oui, partout en Tunisie – voir [[livraison|/blog/livraison-decoration-murale-tunisie]].
+
+Découvrez [[Coffee & Tea|/produit/coffee-and-tea]] et [[Coffee Time|/produit/coffee-time]] dans notre boutique.
     `.trim(),
   },
 
